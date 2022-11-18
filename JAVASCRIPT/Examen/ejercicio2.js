@@ -21,15 +21,39 @@ function rellenar() {
 
 function areaTexto() {
 
-    
-
     var lista = document.getElementById("contenido");
     var indiceSeleccionado = lista.selectedIndex;
     var opcionSeleccionada = lista.options[indiceSeleccionado];
 
     arr.push(opcionSeleccionada.text);
 
-    var areaTexto = document.getElementById('areaTexto');
+    console.log(arr);
+
+    var areaTexto = document.getElementById("areaTexto");
+
+    areaTexto.textContent="";
+
     areaTexto.append(arr);
+    
+}
+
+function crearLista() { 
+
+    var div = document.getElementById("palabras");
+    
+    for (let i = 0; i < arr.length; i++) {
+     
+        var ul = document.createElement("ul");
+        ul.innerHTML = arr[i];
+        div.appendChild(ul);
+        
+    }
+}
+
+function palabraMax() {
+
+    const resultado = arr.reduce((prev, cur) => ((prev[cur] = prev[cur] + 1 || 1), prev), {})
+
+    document.getElementById("palabraRepetida").innerHTML=resultado;
     
 }
