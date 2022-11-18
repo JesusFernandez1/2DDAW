@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ejercicio 13 - DOM b�sico y atributos XHTML</title>
+<script type="text/javascript">
+function añade() {
+    var usuario = prompt("Introduzca algo");
+    var contenido = document.createTextNode(usuario);
+    var cadena = document.getElementById("lista");
+    var li = document.createElement("li");
+    li.appendChild(contenido);
+    cadena.appendChild(li);
+}
+</script>
+</head>
+<body>
+<ul id="lista">
+<li>Lorem ipsum dolor sit amet</li>
+<li>Consectetuer adipiscing elit</li>
+<li>Sed mattis enim vitae orci</li>
+<li>Phasellus libero</li>
+<li>Maecenas nisl arcu</li>
+</ul>
+<input type="button" value="A�adir elemento" onclick= "añade();">
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" defer=""></script></body>
+</html>

@@ -1,0 +1,27 @@
+body {
+
+    background-color:hotpink;
+
+}
+.padre {
+
+    text-align: center;
+
+}
+
+.padre div {
+    display: inline-block;
+    /*
+    float: left;
+    margin: 0 auto;
+    */
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    text-align: center;
+    border: 1px solid #000000;
+    }
+
+    
+
+    

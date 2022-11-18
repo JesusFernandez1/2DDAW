@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+.container{
+    display: flex;
+    flex-flow: row wrap; /* flex-flow afecta a dos directivas(wrap y direction)*/
+    flex-wrap: wrap;
+}
+
+.columna1, .columna2, .columna3{
+    padding: 10px;
+    width: 100%;
+    
+}
+
+@media (min-width: 600px){
+    .columna2, .columna3{width: 50%;}
+}
+@media (min-width: 800px){
+    .container{
+        width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

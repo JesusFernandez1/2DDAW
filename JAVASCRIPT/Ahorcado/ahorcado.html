@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Escuchar click de botones</title>
+  <link rel="stylesheet" href="ahorcado.css">
+</head>
+
+<body>
+
+    <header>
+      <select name="categorias" class="cat-css" id="catego">
+        <option value="0">Animal</option>
+        <option value="1">Electrodomestico</option>
+        <option value="2">Tecnologia</option>
+      </select><br>
+    </header>
+
+    <section id="seccionVidas">
+      <img id="vida1" src="vida1-1.png" alt="" width="45" height="80">
+      <img id="vida2" src="vida1-2.png" alt="" width="45" height="80">
+      <img id="vida3" src="vida2-1.png" alt="" width="45" height="80">
+      <img id="vida4" src="vida2-2.png" alt="" width="45" height="80">
+      <img id="vida5" src="vida3-1.png" alt="" width="45" height="80">
+      <img id="vida6" src="vida3-2.png" alt="" width="45" height="80">
+    </section>
+
+    <section id="seccionBotones">
+
+      <button id="jugar" onclick=" opcionSeleccionada()"><img id="Generar" src="letras/GenerarPalabra.png" width="90"
+          height="80" /></button><br>
+
+    </section>
+
+    <button class="css-button-arrow--black" onclick="jugarAgain()">Again</button>
+
+    <section id="seccionGuiones">
+
+      <div id="DivGuiones">
+      </div>
+
+    </section>
+
+    <section id="seccionLetras">
+
+      <div id="letras">
+      </div>
+
+    </section>
+
+    <section id="imagenes">
+      <img id="imagenBandera" src="flag.png" alt="" width="350" height="800">
+    </section>
+
+    <section id="mario">
+      <img id="imagenMario" src="Mario.png" alt="" width="200" height="200">
+    </section>
+
+  <script src="ahorcado.js"></script>
+</body>
+
+</html>

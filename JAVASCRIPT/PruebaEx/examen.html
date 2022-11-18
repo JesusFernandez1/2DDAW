@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body onload=" comprobarCeldas()">
+
+    <style>
+        table,
+        td,
+        th {
+            border: 2px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+
+            background-color: darkcyan;
+            color: white,
+        }
+    </style>
+
+    <table class="default" id="tabla">
+
+        <thead>
+            <tr>
+
+                <th>Nombre</th>
+
+                <th>Categoria</th>
+
+                <th>Valoracion</th>
+
+                <th>Ruta</th>
+
+            </tr>
+
+            <tr class="fila" onmouseover="cambiarColor(this)" onmouseout="cambiarColor2(this)">
+
+                <td>Arbol</td>
+            
+                <td>Naturaleza</td>
+            
+                <td onclick="pegar(this), comprobarCeldas()">8</td>
+
+                <td>Runta x</td>
+            
+              </tr>
+            
+              <tr class="fila" onmouseover="cambiarColor(this)" onmouseout="cambiarColor2(this)">
+            
+                <td>Playa</td>
+            
+                <td>Naturaleza</td>
+            
+                <td onclick="pegar(this), comprobarCeldas()"></td>
+
+                <td>Runta x</td>
+            
+              </tr>
+            
+              <tr class="fila" onmouseover="cambiarColor(this)" onmouseout="cambiarColor2(this)">
+            
+                <td>Coche</td>
+            
+                <td>Coches</td>
+            
+                <td onclick="pegar(this), comprobarCeldas()">3</td>
+
+                <td>Runta x</td>
+            
+              </tr>
+
+        </thead>
+
+    </table><br>
+
+    <table class="default" id="numeros">
+
+        <thead>
+
+            <tr>
+
+                <td onclick="copiar(this)">0</td>
+
+                <td onclick="copiar(this)">1</td>
+            
+                <td onclick="copiar(this)">2</td>
+            
+                <td onclick="copiar(this)">3</td>
+
+                <td onclick="copiar(this)">4</td>
+                
+                <td onclick="copiar(this)">5</td>
+            
+                <td onclick="copiar(this)">6</td>
+            
+                <td onclick="copiar(this)">7</td>
+
+                <td onclick="copiar(this)">8</td>
+
+                <td onclick="copiar(this)">9</td>
+
+                <td onclick="copiar(this)">10</td>
+            
+            </tr>
+
+        </thead>
+
+    </table>
+    <script type="text/javascript" src="examen.js"></script>
+</body>
+</html>

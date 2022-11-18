@@ -1,0 +1,29 @@
+.padre{
+    width: 100%;
+    height: 500px;
+    text-align: center;
+    margin: auto;
+}
+
+.izq, .der{
+    background-color: red;
+    height: 500px;
+    float: left;
+    width: 10%;
+}
+
+.centro{
+    float: left;
+    width: 80%;
+    height: 500px;
+}
+
+.top,.button{
+    background-color: green;
+    height: 10%;
+}
+.mid{
+    background-color: yellow;
+    height: 80%;
+}
+
