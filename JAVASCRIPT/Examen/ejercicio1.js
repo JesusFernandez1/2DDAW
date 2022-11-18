@@ -86,13 +86,14 @@ var copy5 = document.getElementById("cuadroTexto5");
 
     if ((copy1.value <= copy2.value) && (copy2.value<=copy3.value) && (copy3.value<=copy4.value) && (copy4.value<=copy5.value)) {
 
-        alert("Los numeros estan ordenados de menor a mayor");
-
+        document.getElementById("mensajeAcierto").hidden=false;
+        document.getElementById("mensajeError").hidden=true;
         document.getElementById("invertir").hidden=false;
         
     } else {
 
-        alert("Los numeros NO estan ordenados de menor a mayor");
+      document.getElementById("mensajeError").hidden=false;
+      document.getElementById("mensajeAcierto").hidden=true;
     }
     
 }
