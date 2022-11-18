@@ -1,11 +1,12 @@
-*{
+/*
+ * {
     box-sizing: border-box;
     border: 1px solid red;
 }
 
 .container{
     display: flex;
-    flex-flow: row wrap; /* flex-flow afecta a dos directivas(wrap y direction)*/
+    flex-flow: row wrap; flex-flow afecta a dos directivas(wrap y direction)
     flex-wrap: wrap;
 }
 
@@ -24,4 +25,42 @@
         margin-left: auto;
         margin-right: auto;
     }
+} */
+
+/* * {
+    box-sizing: border-box;
+    border: 1px solid red;
 }
+
+.container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.columna1, .columna2, .columna3{
+    padding: 10px;
+    width: 100%;
+    
+}
+
+@media (min-width: 600px){
+    .columna1 
+    {width: 60%;
+    order: 2;
+    }
+
+    .columna2
+    {width: 40%;
+        order: 1;
+        }
+
+    .columna3
+    {width: 100%;
+        order: 3;
+        }
+}
+@media (min-width: 800px){
+    .columna2, .columna3{
+        width: 20%;
+    }
+} */
