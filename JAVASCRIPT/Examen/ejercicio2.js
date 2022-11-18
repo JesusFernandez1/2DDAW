@@ -1,3 +1,5 @@
+var arr = [];
+
 function rellenar() {
 
     var parrafo = document.getElementById("parrafo");
@@ -14,5 +16,20 @@ function rellenar() {
         
     }
 
+    
+}
+
+function areaTexto() {
+
+    
+
+    var lista = document.getElementById("contenido");
+    var indiceSeleccionado = lista.selectedIndex;
+    var opcionSeleccionada = lista.options[indiceSeleccionado];
+
+    arr.push(opcionSeleccionada.text);
+
+    var areaTexto = document.getElementById('areaTexto');
+    areaTexto.append(arr);
     
 }
