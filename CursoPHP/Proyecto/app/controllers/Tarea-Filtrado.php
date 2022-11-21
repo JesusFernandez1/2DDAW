@@ -95,7 +95,7 @@ function validDniCifNie($dni){
   }
 
   function comprobar_fecha($month, $day, $year){
-    return checkdate(int $month, int $day, int $year);
+    return checkdate($month, $day, $year);
   }
 
   ?>
