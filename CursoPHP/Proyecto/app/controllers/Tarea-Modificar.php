@@ -7,7 +7,7 @@ try {
     $rs = mysqli_query(
         $conex, "UPDATE tareas
         SET /*Introducir todos los valores para cambiarlos, ejemplo: estado_tarea=cancelada*/
-        WHERE tarea_id=$_GET["tarea_id"];");
+        WHERE tarea_id=$_GET[tarea_id];");
 
     echo "Tarea introducida con exito!";
 
