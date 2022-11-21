@@ -24,8 +24,9 @@
             while ($reg = mysqli_fetch_row($rs)) {
               ?>
 
+            <option value="<? $reg["nombre"] ?>"></option>
               
-<?php
+        <?php
             }
         } catch (\Exception $e) {
             echo $e->getMessage();
