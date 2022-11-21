@@ -7,7 +7,7 @@ try {
     $conex=Conecta();
 
     $rs = mysqli_query(
-        $conex, "SELECT tarea  FROM tareas ORDER BY fecha_creacion DESC");
+        $conex, "SELECT *  FROM tareas ORDER BY fecha_creacion DESC");
 
     echo "<p>Nº de tareas:". mysqli_num_rows($rs);
     echo "<pre>";

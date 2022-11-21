@@ -23,9 +23,9 @@
                 <input type="radio" name="estado" value="R"> Realizada 
                 <input type="radio" name="estado" value="C"> Cancelada 
                 <br>
-        Fecha de creacion de la tarea: <input type="text" name="creacion"><br>
+        Fecha de creacion de la tarea: <?php echo date('d-m-Y') ?><br>
         Operario encargado: <input type="text" name="operario"><br>
-        Fecha de realizacion de la tarea: <?php echo date('d-m-Y') ?><br>
+        Fecha de realizacion de la tarea: <input type="date" name="final"><br>
         Anotaciones anteriores: <input type="text" name="anterior"><br>
         Anotaciones posteriores: <input type="text" name="posterior"><br>
         Fichero resumen: <input type="text" name="resumen"><br>
