@@ -10,9 +10,9 @@ try {
     where nombre=$nombre AND contraseña=$contraseña";
     $rs = mysqli_query($conex, $sql);
     if (!mysqli_num_rows($rs)) {
-        include("login.html");
+        include("Usuario-Login.html");
     } else {
-        include("operacionesTarea.html");
+        include("Operaciones-Tarea.html");
     }
 }
 catch(\Exception $e) {

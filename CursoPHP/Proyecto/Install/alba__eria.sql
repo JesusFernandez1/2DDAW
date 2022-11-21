@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2022 a las 00:46:26
+-- Tiempo de generación: 20-11-2022 a las 23:00:24
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tareas` (
-  `cliente_id` int(6) NOT NULL,
+  `tarea_id` int(6) NOT NULL,
   `NIF/CIF` int(9) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido` varchar(45) NOT NULL,
@@ -37,7 +37,6 @@ CREATE TABLE `tareas` (
   `poblacion` varchar(45) NOT NULL,
   `codigo_postal` varchar(45) NOT NULL,
   `provincia` varchar(45) NOT NULL,
-  `tarea` int(6) NOT NULL,
   `estado_tarea` varchar(45) NOT NULL,
   `fecha_creacion` date NOT NULL,
   `fecha_final` date DEFAULT NULL,
@@ -53,9 +52,19 @@ CREATE TABLE `tareas` (
 -- Indices de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  ADD PRIMARY KEY (`cliente_id`),
-  ADD UNIQUE KEY `idcliente_UNIQUE` (`cliente_id`),
+  ADD PRIMARY KEY (`tarea_id`),
+  ADD UNIQUE KEY `idcliente_UNIQUE` (`tarea_id`),
   ADD UNIQUE KEY `NIF/CIF_UNIQUE` (`NIF/CIF`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  MODIFY `tarea_id` int(6) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

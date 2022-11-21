@@ -1,17 +1,17 @@
 <?php
 
 try {
-    include('..\models\conexion.php');
+    include('\models\conexion.php');
     $conex=Conecta();
 
     $rs = mysqli_query(
-        $conex, "SELECT *  FROM tareas");
+        $conex, "SELECT tarea  FROM tareas WHERE estado_tarea=P");
 
     echo "<p>Nº de tareas:". mysqli_num_rows($rs);
     echo "<pre>";
     
     while($reg = mysqli_fetch_row($rs)) {
-        echo "<p>".$reg[0].'-'.$reg[1];
+        echo "<p>".$reg[0];
     }
 }
 catch(\Exception $e) {

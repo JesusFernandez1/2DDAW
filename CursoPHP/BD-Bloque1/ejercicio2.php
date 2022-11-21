@@ -5,13 +5,12 @@ try {
     $conex=Conecta();
 
     $rs = mysqli_query(
-        $conex, "SELECT COUNT(*), c.nombre FROM tbl_provincias p, tbl_comunidadesautonomas c
-                WHERE comunidad_id = c.id GROUP BY comunidad_id");
+        $conex, "SELECT COUNT(*)  FROM tbl_provincias GROUP BY comunidad_id");
 
     echo "<p>Nº de registros:". mysqli_num_rows($rs);
     echo "<pre>";
     while($reg = mysqli_fetch_row($rs)) {
-        echo "<p>".$reg[0] . " - " . $reg[1];
+        echo "<p>".$reg[0];
     }
 }
 catch(\Exception $e) {

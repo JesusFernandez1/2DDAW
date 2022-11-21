@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="filtradoCredenciales.php">
+    <form action="Tarea-Filtrado.php">
         NIF/CIF: <input type="text" name="identificacion"><br>
         Nombre: <input type="text" name="nombre"><br>
         Apellido: <input type="text" name="apellido"><br>

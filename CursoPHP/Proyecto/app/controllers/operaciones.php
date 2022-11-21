@@ -1,25 +1,32 @@
 <?php
 
-//include("operacionesTarea");
+if ($_GET["operacion"]==0) {
 
-try {
-    include('..\models\conexion.php');
-    $conex=Conecta();
+    include("Tarea-Ver.php");
 
-    $rs = mysqli_query(
-        $conex, "SELECT tarea  FROM tareas ORDER BY fecha_creacion DESC");
+} elseif ($_GET["operacion"]==1) {
 
-    echo "<p>Nº de tareas:". mysqli_num_rows($rs);
-    echo "<pre>";
-    
-    while($reg = mysqli_fetch_row($rs)) {
-        echo "<p>".$reg[0];
-    }
-}
-catch(\Exception $e) {
-    echo $e->getMessage();
-}
-finally {
-    mysqli_close($conex); //$conex=$mysqly
+    include("Tarea-Añadir.php");
+
+} elseif ($_GET["operacion"]==2) {
+
+    include("Tarea-Modificar.php");
+
+} elseif ($_GET["operacion"]==3) {
+
+    include("Tarea-Eliminar.php");
+
+} elseif ($_GET["operacion"]==4) {
+
+    include("Tarea-Cambiar-Estado.php");
+
+} elseif ($_GET["operacion"]==5) {
+
+    include("Tarea-Completar");
+
+} elseif ($_GET["operacion"]==6) {
+
+    include("Tarea-Buscar");
+
 }
 
