@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-11-2022 a las 23:00:24
+-- Tiempo de generación: 22-11-2022 a las 00:02:32
 -- Versión del servidor: 10.4.25-MariaDB
 -- Versión de PHP: 8.1.10
 
@@ -39,6 +39,7 @@ CREATE TABLE `tareas` (
   `provincia` varchar(45) NOT NULL,
   `estado_tarea` varchar(45) NOT NULL,
   `fecha_creacion` date NOT NULL,
+  `operario_encargado` int(6) NOT NULL,
   `fecha_final` date DEFAULT NULL,
   `anotacion_inicio` varchar(45) DEFAULT NULL,
   `anotacion_final` varchar(45) DEFAULT NULL
