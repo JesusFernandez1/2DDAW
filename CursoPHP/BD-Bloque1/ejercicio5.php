@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <form action="ejercicio5-1.php">
     Curso: <select name="comunidades">
         <?php
 
@@ -24,7 +25,7 @@
             while ($reg = mysqli_fetch_row($rs)) {
               ?>
 
-            <option value="<?= $reg["nombre"] ?>"></option>
+            <option><?= $reg[0] ?></option>
               
         <?php
             }
@@ -35,7 +36,8 @@
         }
 
         ?>
-    </select><br>
+    </select><input type="submit" value="Enviar">
+    </form>
 </body>
 
 </html>
