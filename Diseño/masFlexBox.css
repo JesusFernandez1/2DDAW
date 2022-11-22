@@ -1,0 +1,58 @@
+.header{
+
+    padding: 2%;
+    background-color: black;
+}
+
+.logo, .nav, .social {
+
+    padding: auto;
+    margin: 30px;
+    background-color: red;
+    
+}
+
+.menu{
+    background-color: rgb(54, 54, 206);
+}
+
+.texto-principal{
+    margin: 20px;
+    margin: 5px;
+    padding: 0.5px;
+    background-color: orange;
+}
+
+h1{
+    padding: auto;
+    margin: 30px;
+    background-color: yellow;
+}
+
+.section{
+    margin-top: 1%;
+    background-color: black;
+    margin-bottom: 1%;
+}
+
+.articulos{
+    width: 65%;
+    background-color: rgb(93, 93, 230);
+}
+
+.aside{
+    width: 25%;
+    background-color: red;
+}
+
+.article{
+    background-color: rgb(59, 59, 206);
+}
+
+.navegacion{
+    background-color: azure;
+}
+
+.publicidad{
+    background-color: bisque;
+}
