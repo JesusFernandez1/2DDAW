@@ -7,7 +7,6 @@ try {
     $query = mysqli_query(
         $conex, "SELECT *  FROM libros");
 
-    
    $libro = "";
     while($row = mysqli_fetch_assoc($query)) {
         
