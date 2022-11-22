@@ -6,7 +6,7 @@ if ($_GET["operacion"]==0) {
 
 } elseif ($_GET["operacion"]==1) {
 
-    include("Tarea-Añadir.php");
+    include("Tarea-Filtrado.php");
 
 } elseif ($_GET["operacion"]==2) {
 

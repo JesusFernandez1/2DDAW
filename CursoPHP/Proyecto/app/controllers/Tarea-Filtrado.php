@@ -1,28 +1,30 @@
 <?php
 
+if ($GET) {
+
 if(validDniCifNie($_GET("identificacion"))){
-    //echo "valido";
-  } else {
-    //echo "invalido";
-  }
+    
+  include("Operaciones-Añadir.php");
 
-if(validarTelefono($_GET("telefono"))){
-    //echo "valido";
-  } else {
-    //echo "invalido";
-  }
-
-  if(validarEmail($_GET("correo"))){
-    //echo "valido";
-  } else {
-    //echo "invalido";
-  }
-
-
-
-
-
+} else if(validarTelefono($_GET("telefono"))){
   
+  include("Operaciones-Añadir.php");
+
+ } else if(validarEmail($_GET("correo"))){
+
+  include("Operaciones-Añadir.php");
+
+ } else {
+
+    include("Tarea-Añadir.php");
+
+ }
+
+} else {
+
+  include("Operaciones-Añadir.php");
+  
+}
 
   function validarEmail($email){
     $reg = "#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i";
@@ -97,5 +99,3 @@ function validDniCifNie($dni){
   function comprobar_fecha($month, $day, $year){
     return checkdate($month, $day, $year);
   }
-
-  ?>
