@@ -5,7 +5,7 @@ try {
     $conex=Conecta();
 
     $query = mysqli_query(
-        $conex, "DELETE FROM libreria WHERE idlibros=$id");
+        $conex, "DELETE FROM libreria WHERE idlibros=".$_GET['id']);
 
 }
 catch(\Exception $e) {
