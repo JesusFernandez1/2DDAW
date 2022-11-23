@@ -10,8 +10,8 @@ try {
     $anno = $_POST['anno'];
 
     $query = mysqli_query(
-        $conex, "INSERT INTO 'tareas' ('Titulo', 'Autor', 'Editora', 'Paginas', 'Anio') VALUES
-        ($titulo, $autor, $editorial, $paginas, $anno");
+        $conex, "INSERT INTO 'libros' ('Titulo', 'Autor', 'Editora', 'Paginas', 'Anio') VALUES
+        ($titulo, $autor, $editorial, $paginas, $anno)");
 
         echo $query;
 
