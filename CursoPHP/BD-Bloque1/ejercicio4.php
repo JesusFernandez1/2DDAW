@@ -12,7 +12,6 @@
 
     <style>
         table,
-        td,
         th {
             border: 2px solid black;
             border-collapse: collapse;
@@ -45,7 +44,7 @@
             );
 
             while ($reg = mysqli_fetch_row($rs)) {
-        ?>
+                ?>
                 <tr>
                     <td><?= $reg[0] ?></td>
                     <?php
@@ -56,10 +55,14 @@
                     );
                     while ($reg2 = mysqli_fetch_row($rs2)) {
                     ?>
-                        <td><?= $reg2[0] ?></td>
-                </tr>
-    <?php
-                    }
+                    
+                    <td><?= $reg2[0] ?></td>
+                    
+                
+            <?php
+                    }?>
+                    </tr>
+                    <?php
                 }
             } catch (\Exception $e) {
                 echo $e->getMessage();
@@ -70,4 +73,5 @@
     ?>
     </table>
 </body>
+
 </html>
