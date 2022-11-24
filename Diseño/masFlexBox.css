@@ -1,31 +1,40 @@
+*{
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 10px;
+}
+
 .header{
 
-    padding: 2%;
     background-color: black;
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .logo, .nav, .social {
 
-    padding: auto;
-    margin: 30px;
     background-color: red;
     
 }
-
+.logo, .social{
+    flex-grow: 1;
+}
+.nav{
+    flex-grow: 3;
+}
 .menu{
     background-color: rgb(54, 54, 206);
+    display: flex;
+    flex-flow: row nowrap;
 }
 
 .texto-principal{
-    margin: 20px;
-    margin: 5px;
-    padding: 0.5px;
+
     background-color: orange;
 }
 
 h1{
-    padding: auto;
-    margin: 30px;
+    
     background-color: yellow;
 }
 
@@ -33,26 +42,46 @@ h1{
     margin-top: 1%;
     background-color: black;
     margin-bottom: 1%;
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .articulos{
-    width: 65%;
     background-color: rgb(93, 93, 230);
+    display: flex;
+    flex-flow: row wrap;
+    flex-grow: 3;
 }
-
 .aside{
-    width: 25%;
     background-color: red;
+    flex-flow: row wrap;
+    display: flex;
+    flex: 1 auto;
+    flex-grow: 1;
 }
 
 .article{
     background-color: rgb(59, 59, 206);
+    flex: 40%;
 }
 
 .navegacion{
+    flex: 1 100%;
     background-color: azure;
 }
 
 .publicidad{
     background-color: bisque;
+    flex: 1 100%;
+}
+
+.footer{
+    background-color: black;
+    justify-content: center;
+    display: flex;
+}
+
+.pie{
+    background-color: rgb(223, 163, 91);
+    width: 30%;
 }
