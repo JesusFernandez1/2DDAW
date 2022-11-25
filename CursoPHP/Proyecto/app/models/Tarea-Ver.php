@@ -3,7 +3,7 @@
 //include("operacionesTarea");
 
 try {
-    include('..\models\conexion.php');
+    include('conexion.php');
     $conex=Conecta();
 
     $rs = mysqli_query(
