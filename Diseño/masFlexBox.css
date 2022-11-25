@@ -52,7 +52,7 @@ h1{
     background-color: rgb(93, 93, 230);
     display: flex;
     flex-flow: row wrap;
-    flex-grow: 2 1 auto;
+    flex: 2 1 auto;
 }
 .aside{
     background-color: red;
