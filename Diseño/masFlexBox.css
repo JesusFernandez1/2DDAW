@@ -1,7 +1,13 @@
 *{
     box-sizing: border-box;
     padding: 10px;
+    text-align: center;
     margin: 10px;
+}
+
+.padre{
+    display: flex;
+    flex-flow: column nowrap;
 }
 
 .header{
@@ -15,6 +21,7 @@
 
     background-color: red;
     flex:1 1 auto ;
+    height: 30px;
 }
 .nav{
     flex:5 1;
@@ -49,24 +56,22 @@ h1{
 }
 .aside{
     background-color: red;
-    flex-flow: row wrap;
-    display: flex;
     flex:1 1 auto;
 }
 
 .article{
     background-color: rgb(59, 59, 206);
-    flex: 40%;
+    flex:1 1 45%;
 }
 
 .navegacion{
-    flex: 1 100%;
+    flex:1 1 100%;
     background-color: azure;
 }
 
 .publicidad{
     background-color: bisque;
-    flex: 1 100%;
+    
 }
 
 .footer{
