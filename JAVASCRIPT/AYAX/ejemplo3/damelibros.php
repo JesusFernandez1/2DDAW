@@ -2,9 +2,10 @@
 $username = "root";
 $password = "";
 $database = "libreria";
+$orden = $_GET['orden'];
 $mysqli = new mysqli("localhost", $username, $password, $database);
 mysqli_set_charset($mysqli,'UTF8');
-$query = "SELECT * FROM libros";
+$query = "SELECT * FROM libros order by ".$orden;
 $libros = [];
 if ($result = $mysqli->query($query)) {
 

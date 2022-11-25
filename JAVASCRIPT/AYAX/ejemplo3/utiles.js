@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    var orden="idlibros";
+    muestraLibros(orden);
+
+    $('#titulo').click(function(){
+
+        muestraLibros('titulos');
+    })
   $("#insertar").click(function () {
     $.ajax({
       url: "insertalibro.php",
@@ -55,15 +62,16 @@ $(document).ready(function () {
     });
   });
 
-  $.ajax({
-    url: "damelibros.php",
-    type: "GET",
-    dataType: "json",
-    success: function (datos) {
-      console.log(datos);
-      var libros =
-        '<table id="tablalibros" border=1 class="table table-stripped"><tr><th>Codigo</th><th>Titulo</th><th>Autor</th><th>Editorial</th><th>Paginas</th><th>Año</th><th>Acciones</th></tr>';
-      $.each(datos, function (i, elemento) {
+  function muestraLibros(orden) {
+    $.ajax({
+      url: "damelibros.php?orden="+orden,
+      type: "GET",
+      dataType: "json",
+      success: function (datos) {
+        console.log(datos);
+        var libros =
+          '<table id="tablalibros" border=1 class="table table-stripped"><tr><th>Codigo</th><th id="titulo">Titulo</th><th>Autor</th><th>Editorial</th><th>Paginas</th><th>Año</th><th>Acciones</th></tr>';
+        $.each(datos, function (i, elemento) {
           libros =
             libros +
             "<tr><td>" +
@@ -79,17 +87,18 @@ $(document).ready(function () {
             "</td><td>" +
             elemento.anno +
             "</td>";
-
-      });
-      libros =
-        libros + '<td><button class="borrar">Borrar</button></tr></table>';
-      $("#contenido").html(libros);
-    },
-    error: function (xhr, status) {
-      alert("Disculpe, existió un problema");
-    },
-    complete: function (xhr, status) {
-      //alert('Petición realizada');
-    },
-  });
+        });
+        libros =
+          libros +
+          '<td><button class="borrar">Borrar</button></td><td><button class="modificar">Modificar</button></tr></table>';
+        $("#contenido").html(libros);
+      },
+      error: function (xhr, status) {
+        alert("Disculpe, existió un problema");
+      },
+      complete: function (xhr, status) {
+        //alert('Petición realizada');
+      },
+    });
+  }
 });
