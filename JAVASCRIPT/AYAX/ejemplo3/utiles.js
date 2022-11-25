@@ -2,10 +2,10 @@ $(document).ready(function () {
     var orden="idlibros";
     muestraLibros(orden);
 
-    $('#titulo').click(function(){
-
-        muestraLibros('titulos');
-    })
+    $('#contenido').on("click", "th:not('#acciones','#anno')",(function(){
+        elemento = $(this).text();
+        muestraLibros(elemento);
+    }))
   $("#insertar").click(function () {
     $.ajax({
       url: "insertalibro.php",
@@ -70,7 +70,7 @@ $(document).ready(function () {
       success: function (datos) {
         console.log(datos);
         var libros =
-          '<table id="tablalibros" border=1 class="table table-stripped"><tr><th>Codigo</th><th id="titulo">Titulo</th><th>Autor</th><th>Editorial</th><th>Paginas</th><th>Año</th><th>Acciones</th></tr>';
+          '<table id="tablalibros" border=1 class="table table-stripped"><tr><th>Codigo</th><th id="titulo">Titulo</th><th>Autor</th><th>Editorial</th><th>Paginas</th><th id="anno">Año</th><th id="acciones">Acciones</th></tr>';
         $.each(datos, function (i, elemento) {
           libros =
             libros +
