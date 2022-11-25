@@ -2,7 +2,7 @@ $(document).ready(function () {
     var orden="idlibros";
     muestraLibros(orden);
 
-    $('#contenido').on("click", "th:not('#acciones','#anno')",(function(){
+    $('#contenido').on("click", "th:not('#acciones')",(function(){
         elemento = $(this).text();
         muestraLibros(elemento);
     }))
@@ -20,7 +20,7 @@ $(document).ready(function () {
       },
       success: function (datos) {
         fila =
-          "<tr><td>dddd</td><td>" +
+          "<tr><td></td><td>" +
           $("#titulo").val() +
           "</td><td>" +
           $("#autor").val() +
@@ -86,11 +86,11 @@ $(document).ready(function () {
             elemento.paginas +
             "</td><td>" +
             elemento.anno +
-            "</td>";
+            "</td>"+ '<td><button class="borrar">Borrar</button><button class="modificar">Modificar</button></td></tr>'
         });
         libros =
           libros +
-          '<td><button class="borrar">Borrar</button></td><td><button class="modificar">Modificar</button></tr></table>';
+          '</table>';
         $("#contenido").html(libros);
       },
       error: function (xhr, status) {
