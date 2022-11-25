@@ -14,18 +14,16 @@
 .logo, .nav, .social {
 
     background-color: red;
-    
-}
-.logo, .social{
-    flex-grow: 1;
+    flex:1 1 auto ;
 }
 .nav{
-    flex-grow: 3;
+    flex:5 1;
 }
 .menu{
     background-color: rgb(54, 54, 206);
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
 }
 
 .texto-principal{
@@ -39,25 +37,21 @@ h1{
 }
 
 .section{
-    margin-top: 1%;
     background-color: black;
-    margin-bottom: 1%;
     display: flex;
-    flex-flow: row wrap;
 }
 
 .articulos{
     background-color: rgb(93, 93, 230);
     display: flex;
     flex-flow: row wrap;
-    flex-grow: 3;
+    flex-grow: 2 1 auto;
 }
 .aside{
     background-color: red;
     flex-flow: row wrap;
     display: flex;
-    flex: 1 auto;
-    flex-grow: 1;
+    flex:1 1 auto;
 }
 
 .article{
@@ -83,5 +77,34 @@ h1{
 
 .pie{
     background-color: rgb(223, 163, 91);
-    width: 30%;
+    width: 50%;
+}
+
+@media (max-width: 800px){
+
+    .section{
+        flex-direction: column;
+    }
+
+    .menu{
+        flex-direction: column;
+    }
+
+    .aside{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 600px){
+
+    .articulos{
+        flex-direction: column;
+    }
+
+    .aside{
+        flex-direction: column;
+    }
+
 }
