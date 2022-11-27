@@ -1,7 +1,7 @@
 <?php
 
 try {
-    include('\models\conexion.php');
+    include('conexion.php');
     $conex=Conecta();
     $identificacion=$_GET["identificacion"];
     $nombre=$_GET["nombre"];
@@ -12,7 +12,7 @@ try {
     $codigo=$_GET["codigo"];
     $provincia=$_GET["provincia"];
     $estado=$_GET["estado"];
-    $creacion=date('d-m-Y');
+    $creacion=$_GET["inicio"];
     $operario=$_GET["operario"];
     $final=$_GET["final"];
     $anterior=$_GET["anterior"];

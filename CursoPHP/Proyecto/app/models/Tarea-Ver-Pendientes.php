@@ -1,11 +1,11 @@
 <?php
 
 try {
-    include('\models\conexion.php');
+    include('conexion.php');
     $conex=Conecta();
 
     $rs = mysqli_query(
-        $conex, "SELECT tarea  FROM tareas WHERE estado_tarea=P");
+        $conex, "SELECT *  FROM tareas WHERE estado_tarea=P");
 
     echo "<p>Nº de tareas:". mysqli_num_rows($rs);
     echo "<pre>";

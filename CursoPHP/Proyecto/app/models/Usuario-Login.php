@@ -1,7 +1,7 @@
 <?php
 
 try {
-    include('..\models\conexion.php');
+    include('conexion.php');
     $conex=Conecta();
     $nombre = $_GET['nombre'];
     $contraseña = $_GET['contraseña'];
