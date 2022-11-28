@@ -1,13 +1,14 @@
 <?php
 
 try {
-    include('\models\conexion.php');
+    include('conexion.php');
     $conex=Conecta();
+    $idTarea = $_GET["tarea_id"];
 
     $rs = mysqli_query(
-        $conex, "DELETE FROM tareas WHERE tarea_id='$_GET["tarea_id"];");
+        $conex, "DELETE FROM tareas WHERE tarea_id='".$idTarea."'");
 
-    echo "Tarea introducida con exito!";
+    echo "Tarea eliminada con exito!";
 
 }
 catch(\Exception $e) {

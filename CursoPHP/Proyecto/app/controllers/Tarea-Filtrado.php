@@ -10,6 +10,6 @@ if ($_GET) {
 
 } else {
 
-  include("C:/Users/2DAW/Desktop/xampp/htdocs/2DDAW/CursoPHP/Proyecto/app/views/Operaciones-Tareas.php");
+  include("../Operaciones-Añadir.php");
   
 }
