@@ -6,7 +6,7 @@ try {
     $idTarea = $_GET["tarea_id"];
 
     $rs = mysqli_query(
-        $conex, "DELETE FROM tareas WHERE tarea_id='".$idTarea."'");
+        $conex, "DELETE FROM tareas WHERE tarea_id='$idTarea'");
 
     echo "Tarea eliminada con exito!";
 

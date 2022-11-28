@@ -20,7 +20,7 @@ try {
 
     $rs = mysqli_query(
         $conex, "UPDATE tareas
-        SET NIF/CIF=$identificacion, nombre=$nombre, apellido=$apellido, telefono=$telefono, correo=$correo, poblacion=$poblacion, codigo_postal=$codigo, provincia=$provincia, estado_tarea=$estado, fecha_creacion=$creacion, operario_encargado=$operario, fecha_final=$final,  anotacion_inicio=$anterior, anotacion_final=$posterior
+        SET NIF/CIF='$identificacion', nombre='$nombre', apellido='$apellido', telefono='$telefono', correo='$correo', poblacion='$poblacion', codigo_postal='$codigo', provincia='$provincia', estado_tarea='$estado', fecha_creacion='$creacion', operario_encargado='$operario', fecha_final='$final', anotacion_inicio='$anterior', anotacion_final='$posterior'
         WHERE tarea_id=$_GET[tarea_id];");
 
     echo "Tarea introducida con exito!";

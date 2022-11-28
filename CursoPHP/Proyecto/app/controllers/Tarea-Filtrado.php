@@ -2,14 +2,22 @@
 
 if ($_GET) {
 
-  include("models/Util-ValidarCorreo.php");
-  include("models/Util-ValidarDni.php");
-  include("models/Util-ValidarTelefono.php");
+  include("Util-FechaValida.php");
+  include("Util-ValidarCorreo.php");
+  include("Util-ValidarDNI.php");
+  include("Util-ValidarTelefono.php");
 
+  if (validDniCifNie($dni)) {
 
+  } else if (validarTelefono($numero)) {
 
+  } else if (validarEmail($email)) {
+
+  } else if (comprobar_fecha($date)) {
+
+  } else {
+    include("../models/Tarea-A%C3%B1adir.php");
+  }
 } else {
-
-  include("../Operaciones-Añadir.php");
-  
+  include("../views/Operaciones-A%C3%B1adir.php");
 }

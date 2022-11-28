@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="Tarea-Filtrado.php">
+    <form action="../controllers/Tarea-Filtrado.php">
         <label for="" class="form-label">CIF:</label><input type="text" name="identificacion"><br>
         <label for="" class="form-label">Nombre:</label> <input type="text" name="nombre"><br>
         <label for="" class="form-label">Apellido: </label><input type="text" name="apellido"><br>
