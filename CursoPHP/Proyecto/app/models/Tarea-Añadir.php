@@ -3,6 +3,7 @@
 try {
     include('conexion.php');
     $conex=Conecta();
+    $todo = $_get; /** PDO */
     $identificacion=$_GET["identificacion"];
     $nombre=$_GET["nombre"];
     $apellido=$_GET["apellido"];

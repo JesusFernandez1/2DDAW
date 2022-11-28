@@ -7,13 +7,13 @@ if ($_GET) {
   include("Util-ValidarDNI.php");
   include("Util-ValidarTelefono.php");
 
-  if (validDniCifNie($dni)) {
+  if (validDniCifNie($_GET["identificacion"])) {
 
-  } else if (validarTelefono($numero)) {
+  } else if (validarTelefono($_GET["telefono"])) {
 
-  } else if (validarEmail($email)) {
+  } else if (validarEmail($_GET["correo"])) {
 
-  } else if (comprobar_fecha($date)) {
+  } else if (comprobar_fecha($_GET["inicio"])) {
 
   } else {
     include("../models/Tarea-A%C3%B1adir.php");
