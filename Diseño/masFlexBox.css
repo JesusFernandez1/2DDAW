@@ -3,6 +3,11 @@
     padding: 10px;
     text-align: center;
     margin: 10px;
+    font-size: calc(0.5em + 0.5vw);
+}
+
+h1::before{
+    content: "h1";
 }
 
 .padre{
@@ -100,6 +105,10 @@ h1{
         justify-content: center;
     }
 
+    h1::before{
+        content: "Papa";
+    }
+
 }
 
 @media (max-width: 600px){
@@ -111,5 +120,7 @@ h1{
     .aside{
         flex-direction: column;
     }
-
+    h1::before{
+        content: "pirata";
+    }
 }
