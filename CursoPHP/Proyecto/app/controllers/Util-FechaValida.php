@@ -7,11 +7,14 @@
  * @return void
  */
 
-function comprobar_fecha($date){
+function comprobar_fecha($date) {
 
-    if (date("d-m-Y") >= date("$date")) {
+    $fecha_entrada = strtotime(date($date));
+    $fecha_actual = strtotime(date('d-m-Y'));
+
+    if ($fecha_actual >= $fecha_entrada) {
         return true;
+    } else {
+        return false;
     }
-
-    return false;
-  }
+}
