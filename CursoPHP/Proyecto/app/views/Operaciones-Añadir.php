@@ -7,6 +7,11 @@
     <title>Document</title>
 </head>
 <body>
+    <?php
+    function verError() {
+       
+    }
+    ?>
     <form action="../controllers/Tarea-Filtrado.php">
         <label for="" class="form-label">CIF:</label><input type="text" name="identificacion"><br>
         <label for="" class="form-label">Nombre:</label> <input type="text" name="nombre"><br>
