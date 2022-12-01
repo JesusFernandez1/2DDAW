@@ -27,27 +27,31 @@ function areaTexto() {
 
     arr.push(opcionSeleccionada.text);
 
-    console.log(arr);
-
     var areaTexto = document.getElementById("areaTexto");
 
     areaTexto.textContent="";
 
-    areaTexto.append(arr);
+    for (let i = 0; i < arr.length; i++) {
+     
+        areaTexto.append(arr[i]);
+        salto = "-"
+        areaTexto.append(salto);
+    }
     
 }
 
 function crearLista() { 
 
     var div = document.getElementById("palabras");
-    
+    var ul = document.createElement("ul");
     for (let i = 0; i < arr.length; i++) {
      
-        var ul = document.createElement("ul");
-        ul.innerHTML = arr[i];
-        div.appendChild(ul);
+        var li = document.createElement("li");
+        li.innerHTML = arr[i];
+        ul.appendChild(li);
         
     }
+    div.appendChild(ul);
 }
 
 function palabraMax() {
