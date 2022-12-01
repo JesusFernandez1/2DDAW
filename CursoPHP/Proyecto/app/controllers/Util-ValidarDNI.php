@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * validDniCifNie
+ *
+ * @param  mixed $dni
+ * @return void
+ */
 function validDniCifNie($dni){
     $cif = strtoupper($dni);
     for ($i = 0; $i < 9; $i ++){
