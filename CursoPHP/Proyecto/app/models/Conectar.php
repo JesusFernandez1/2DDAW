@@ -3,7 +3,7 @@
 class Database  { 
 
     public $db;   
-    private static $dns = "mysql:host=localhost;dbname=albañeria"; 
+    private static $dns = "mysql:host=localhost;dbname=albaneria"; 
     private static $user = "root"; 
     private static $pass = "";     
     private static $instance;
