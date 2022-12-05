@@ -1,101 +1,89 @@
 <?php
 
-if ($GET) {
+if ($_GET) {
 
-if(validDniCifNie($_GET("identificacion"))){
-    
-  include("Operaciones-Añadir.php");
-
-} else if(validarTelefono($_GET("telefono"))){
+  include("Util-ValidarCodigo.php");
+  include("Util-FechaValida.php");
+  include("Util-ValidarCorreo.php");
+  include("Util-ValidarDNI.php");
+  include("Util-ValidarTelefono.php");
+  include("../models/GestorErrores.php");
+  $errores = new GestorErrores('<span style="color. red;">*', '*</span>');
   
-  include("Operaciones-Añadir.php");
 
- } else if(validarEmail($_GET("correo"))){
+  if (empty($_GET["identificacion"])) {
 
-  include("Operaciones-Añadir.php");
+    $errores->AnotaError('identificacion', 'El DNI no puede estar vacio');
 
- } else {
+  } else if (!validDniCifNie($_GET["identificacion"])) {
 
-    include("Tarea-Añadir.php");
+    $errores->AnotaError('identificacion', 'El DNI introducido no es valido');
+  }
 
- }
+  if (empty($_GET["nombre"])) {
 
+    $errores->AnotaError('nombre', 'El nombre no puede estar vacio');
+  }
+
+  if (empty($_GET["apellido"])) {
+
+    $errores->AnotaError('apellido', 'El apellido no puede estar vacio');
+  }
+
+  if (empty($_GET["correo"])) {
+
+    $errores->AnotaError('correo', 'El nombre no puede estar vacio');
+
+  } else if (!validarEmail($_GET["correo"])) {
+
+    $errores->AnotaError('correo', 'El formato del correo introducido no es valido');
+  }
+
+  if (empty($_GET["telefono"])) {
+
+    $errores->AnotaError('telefono', 'El DNI no puede estar vacio');
+
+  } else if (!validarTelefono($_GET["telefono"])) {
+
+    $errores->AnotaError('telefono', 'El telefono introducido no tiene un formato aceptado');
+  }
+
+  if (empty($_GET["poblacion"])) {
+
+    $errores->AnotaError('poblacion', 'El DNI no puede estar vacio');
+  }
+
+  if (empty($_GET["estado"])) {
+
+    $errores->AnotaError('estado', 'El estado no puede estar vacio');
+  }
+
+  if (empty($_GET["codigo"])) {
+
+    $errores->AnotaError('codigo', 'El codigo no puede estar vacio');
+
+  } else if (!comprobarCodigo($_GET["codigo"])) {
+
+    $errores->AnotaError('codigo', 'El codigo no tiene un formato valido');
+  }
+  if (!comprobar_fecha_actual($_GET['inicio'])) {
+
+    $errores->AnotaError('inicio', 'La fecha de creacion no puede modificarse');
+  }
+  if (empty($_GET["final"])) {
+
+    $errores->AnotaError('final', 'La fecha no puede estar vacia');
+
+  } else if (!comprobar_fecha($_GET["final"])) {
+
+    $errores->AnotaError('final', 'La fecha de finalizacion no puede ser inferior a la acutal');
+
+  }
+  if ($errores->HayErrores() == 0) {
+    include("../models/Tarea-Añadir.php");
+  } else {
+    include("../views/Operaciones-Añadir.php");
+  }
 } else {
-
-  include("Operaciones-Añadir.php");
-  
+  include("../views/Operaciones-Añadir.php");
 }
-
-  function validarEmail($email){
-    $reg = "#^(((([a-z\d][\.\-\+_]?)*)[a-z0-9])+)\@(((([a-z\d][\.\-_]?){0,62})[a-z\d])+)\.([a-z\d]{2,6})$#i";
-    return preg_match($reg, $email);
-  }
-
-function validarTelefono($numero){
-    $reg = "#^\(?\d{2}\)?[\s\.-]?\d{4}[\s\.-]?\d{4}$#";
-    return preg_match($reg, $numero);
-  }
-
-function validDniCifNie($dni){
-    $cif = strtoupper($dni);
-    for ($i = 0; $i < 9; $i ++){
-      $num[$i] = substr($cif, $i, 1);
-    }
-    // Si no tiene un formato valido devuelve error
-    if (!preg_match('/((^[A-Z]{1}[0-9]{7}[A-Z0-9]{1}$|^[T]{1}[A-Z0-9]{8}$)|^[0-9]{8}[A-Z]{1}$)/', $cif)){
-      return false;
-    }
-    // Comprobacion de NIFs estandar
-    if (preg_match('/(^[0-9]{8}[A-Z]{1}$)/', $cif)){
-      if ($num[8] == substr('TRWAGMYFPDXBNJZSQVHLCKE', substr($cif, 0, 8) % 23, 1)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // Algoritmo para comprobacion de codigos tipo CIF
-    $suma = $num[2] + $num[4] + $num[6];
-    for ($i = 1; $i < 8; $i += 2){
-      $suma += (int)substr((2 * $num[$i]),0,1) + (int)substr((2 * $num[$i]), 1, 1);
-    }
-    $n = 10 - substr($suma, strlen($suma) - 1, 1);
-    // Comprobacion de NIFs especiales (se calculan como CIFs o como NIFs)
-    if (preg_match('/^[KLM]{1}/', $cif)){
-      if ($num[8] == chr(64 + $n) || $num[8] == substr('TRWAGMYFPDXBNJZSQVHLCKE', substr($cif, 1, 8) % 23, 1)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // Comprobacion de CIFs
-    if (preg_match('/^[ABCDEFGHJNPQRSUVW]{1}/', $cif)){
-      if ($num[8] == chr(64 + $n) || $num[8] == substr($n, strlen($n) - 1, 1)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // Comprobacion de NIEs
-    // T
-    if (preg_match('/^[T]{1}/', $cif)){
-      if ($num[8] == preg_match('/^[T]{1}[A-Z0-9]{8}$/', $cif)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // XYZ
-    if (preg_match('/^[XYZ]{1}/', $cif)){
-      if ($num[8] == substr('TRWAGMYFPDXBNJZSQVHLCKE', substr(str_replace(array('X','Y','Z'), array('0','1','2'), $cif), 0, 8) % 23, 1)){
-        return true;
-      }else{
-        return false;
-      }
-    }
-    // Si todavía no se ha verificado devuelve error
-    return false;
-  }
-
-  function comprobar_fecha($month, $day, $year){
-    return checkdate($month, $day, $year);
-  }

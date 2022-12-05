@@ -7,29 +7,27 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="Tarea-Filtrado.php">
-        NIF/CIF: <input type="text" name="identificacion"><br>
-        Nombre: <input type="text" name="nombre"><br>
-        Apellido: <input type="text" name="apellido"><br>
-        Telefono: <input type="text" name="telefono"><br>
-        Correo: <input type="text" name="correo"><br>
-        Poblacion: <input type="text" name="poblacion"><br>
-        Codigo postal: <input type="text" name="codigo"><br>
-        Provincia: <select name="provincia">
-            <option></option>
-        </select><br>
-        Estado: <input type="radio" name="estado" value="B"> Esperando ser aprobada 
+    <form action="../controllers/Tarea-Filtrado.php">
+        <label for="" class="form-label">CIF:</label><input type="text" name="identificacion"><br>
+        <label for="" class="form-label">Nombre:</label> <input type="text" name="nombre"><br>
+        <label for="" class="form-label">Apellido: </label><input type="text" name="apellido"><br>
+        <label for="" class="form-label">Telefono: </label><input type="text" name="telefono"><br>
+        <label for="" class="form-label">Correo: </label><input type="text" name="correo"><br>
+        <label for="" class="form-label">Poblacion: </label><input type="text" name="poblacion"><br>
+        <label for="" class="form-label">Codigo postal:</label> <input type="text" name="codigo"><br>
+        <!-- <label for="" class="form-label">Provincia:</label><br> --> 
+        <label for="" class="form-label">Estado:</label> <input type="radio" name="estado" value="B"> Esperando ser aprobada 
                 <input type="radio" name="estado" value="P"> Pendiente 
                 <input type="radio" name="estado" value="R"> Realizada 
                 <input type="radio" name="estado" value="C"> Cancelada 
                 <br>
-        Fecha de creacion de la tarea: <?php echo date('d-m-Y') ?><br>
-        Operario encargado: <input type="text" name="operario"><br>
-        Fecha de realizacion de la tarea: <input type="date" name="final"><br>
-        Anotaciones anteriores: <input type="text" name="anterior"><br>
-        Anotaciones posteriores: <input type="text" name="posterior"><br>
-        Fichero resumen: <input type="text" name="resumen"><br>
-        Adjuntar fotos: <input type="text" name="fotos"><br>
+        <label for="" class="form-label">Fecha de creacion de la tarea: </label><input type="date" name="inicio" value="<?php echo date("Y-m-d")?>"><br>
+        <label for="" class="form-label">Operario encargado: </label><input type="text" name="operario"><br>
+        <label for="" class="form-label">Fecha de realizacion de la tarea:</label> <input type="date" name="final"><br>
+        <label for="" class="form-label">Anotaciones anteriores: </label><textarea name="anterior" cols="30" rows="10"><br>
+        <label for="" class="form-label">Anotaciones posteriores: </label><textarea name="posterior" cols="30" rows="10"><br>
+        <label for="" class="form-label">Fichero resumen: </label><input type="text" name="resumen"><br>
+        <label for="" class="form-label">Adjuntar fotos: </label><input type="text" name="fotos"><br>
         <input type="submit" value="Enviar">
       </form>
 </body>

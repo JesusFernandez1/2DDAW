@@ -8,8 +8,8 @@
 </head>
 <body>
     <form action="Usuario-Operaciones.php">
-        ¿Que operacion desea realizar?: <br>
-        Operacion: <select name="operacionUsuario">
+    <label for="" class="form-label">¿Que operacion desea realizar?: </label> <br>
+    <label for="" class="form-label">Operacion: </label><select name="operacionUsuario">
             <option></option>
             <option value="1">Añadir un usuario</option>
             <option value="2">Eliminar un usuario</option>

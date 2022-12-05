@@ -7,9 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="operaciones.php">
-        ¿Que operacion desea realizar?: <br>
-        Operacion: <select name="operacion">
+    <form action="../controllers/operaciones.php">
+    <label for="" class="form-label">¿Que operacion desea realizar?: </label><br>
+    <label for="" class="form-label">Operacion: </label><select name="operacion">
             <option value="0">Ver lista de tareas</option> <!-- adm y ope -->
             <option value="1">Añadir una nueva tarea</option> <!-- adm -->
             <option value="2">Modificar datos de una tarea</option> <!-- adm -->
