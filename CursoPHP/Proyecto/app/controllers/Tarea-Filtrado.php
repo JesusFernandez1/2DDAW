@@ -1,15 +1,14 @@
 <?php
-
-if ($_GET) {
-
+  include("../models/GestorErrores.php");
   include("Util-ValidarCodigo.php");
   include("Util-FechaValida.php");
   include("Util-ValidarCorreo.php");
   include("Util-ValidarDNI.php");
   include("Util-ValidarTelefono.php");
-  include("../models/GestorErrores.php");
-  $errores = new GestorErrores('<span style="color. red;">*', '*</span>');
-  
+
+$errores = new GestorErrores('<span style="color: red;">', '</span>');
+
+if ($_GET) {  
 
   if (empty($_GET["identificacion"])) {
 
@@ -79,10 +78,10 @@ if ($_GET) {
     $errores->AnotaError('final', 'La fecha de finalizacion no puede ser inferior a la acutal');
 
   }
-  if ($errores->HayErrores() == 0) {
-    include("../models/Tarea-Añadir.php");
-  } else {
+  if ($errores->HayErrores()) {
     include("../views/Operaciones-Añadir.php");
+  } else {
+    include("../models/Tarea-Añadir.php");
   }
 } else {
   include("../views/Operaciones-Añadir.php");
