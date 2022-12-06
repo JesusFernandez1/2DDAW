@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../controllers/operaciones.php">
+    <form action="controllers/tareas_controller.php">
     <label for="" class="form-label">¿Que operacion desea realizar?: </label><br>
     <label for="" class="form-label">Operacion: </label><select name="operacion">
             <option value="0">Ver lista de tareas</option> <!-- adm y ope -->

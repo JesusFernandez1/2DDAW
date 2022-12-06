@@ -42,7 +42,7 @@
         <label for="" class="form-label">Fichero resumen: </label><input type="text" name="resumen">
         <?= $errores->ErrorFormateado("resumen")?><br>
         <label for="" class="form-label">Adjuntar fotos: </label><input type="text" name="fotos"><br>
-        <input type="submit" value="Enviar">
+        <input type="submit" class="btn" name="btn" value="Añadir"> <br>
       </form>
 </body>
 </html>
