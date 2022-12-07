@@ -1,7 +1,10 @@
 <html>
+
 <head>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
    <title>Base de Datos</title>
 </head>
+
 <body>
    <h1>Ver datos de las tareas</h1>
    <table border="1">
@@ -15,18 +18,19 @@
          <th>fecha_creacion</th>
          <th>telefono</th>
       </tr>
-      <?php foreach ($tareas as $tarea) : ?>
+      @foreach ($tareas as $tarea)
          <tr>
-            <td><?php echo $tarea['nombre'] ?></td>
-            <td><?php echo $tarea['apellido'] ?></td>
-            <td><?php echo $tarea['NIF/CIF'] ?></td>
-            <td><?php echo $tarea['poblacion'] ?></td>
-            <td><?php echo $tarea['codigo_postal'] ?></td>
-            <td><?php echo $tarea['provincia'] ?></td>
-            <td><?php echo $tarea['fecha_creacion'] ?></td>
-            <td><?php echo $tarea['telefono'] ?></td>
+            <td>{{$tarea['NIF/CIF']}}</td>
+            <td>{{$tarea['nombre']}}</td>
+            <td>{{$tarea['apellido']}}</td>
+            <td>{{$tarea['poblacion']}}</td>
+            <td>{{$tarea['codigo_postal']}}</td>
+            <td>{{$tarea['provincia']}}</td>
+            <td>{{$tarea['fecha_creacion']}}</td>
+            <td>{{$tarea['telefono']}}</td>
          </tr>
-      <?php endforeach; ?>
+      @endforeach
    </table>
 </body>
+
 </html>

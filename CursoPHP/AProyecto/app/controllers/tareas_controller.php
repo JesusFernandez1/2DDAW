@@ -16,8 +16,10 @@
         } else {
         //Pasamos a la vista toda la información que se desea representar
         //include("app/views/tareas_mostrar.php");
+        //print_r($tareas);
+        //die();
         echo $blade->render('tareas_mostrar', [
-            'tarea'=>$tareas
+            'tareas'=>$tareas
         ]);
         }
     }
