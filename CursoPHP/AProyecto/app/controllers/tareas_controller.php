@@ -7,14 +7,19 @@
 
     function ver() {
         //Llamada al modelo
+        include('app/models/varios.php');
         require("app/models/tareas_model.php");
         $modelo_tarea = new tareas_model();
         $tareas = $modelo_tarea->get_tarea();
         if ($tareas === null){
             die("No existe ninguna tarea");
-        }
+        } else {
         //Pasamos a la vista toda la información que se desea representar
-        include("app/views/tareas_mostrar.php");
+        //include("app/views/tareas_mostrar.php");
+        echo $blade->render('tareas_mostrar', [
+            'tarea'=>$tareas
+        ]);
+        }
     }
     
     function verPendiente() {
