@@ -2,7 +2,7 @@
 require("Conectar.php"); 
 class tareas_model {
 
-    public function get_tarea(){
+    public static function get_tarea(){
 
         $query = Database::getInstance()->db->query("SELECT * FROM tareas ORDER BY fecha_creacion DESC");
         $tareas = array();
@@ -12,7 +12,17 @@ class tareas_model {
         return $tareas;
     }
 
-    public function getOnetarea($condicion){
+    public static function get_provincias(){
+
+        $query = Database::getInstance()->db->query("SELECT * FROM tbl_provincias");
+        $provincias = array();
+        while($tarea = $query->fetch()){
+            $provincias[] = $tarea;
+        }
+        return $provincias;
+    }
+
+    public static function getOnetarea($condicion){
 
         $query = Database::getInstance()->db->query("SELECT * FROM tareas WHERE " . $condicion);
         $tareas = array();
@@ -21,7 +31,7 @@ class tareas_model {
         }
         return $tareas;
     }
-    public function get_tareaPendiente(){
+    public static function get_tareaPendiente(){
 
         $query = Database::getInstance()->db->prepare("SELECT * FROM tareas WHERE estado_tarea = ? ORDER BY fecha_creacion DESC");
         $query->setFetchMode(PDO::FETCH_ASSOC);
@@ -32,7 +42,7 @@ class tareas_model {
         }
         return $tareas;
     }
-    public function insert_tarea($data){
+    public static function insert_tarea($data){
         
         $query = Database::getInstance()->db->query("INSERT INTO tareas VALUES(NULL," . $data . ")");
         if ($query) {
@@ -41,16 +51,16 @@ class tareas_model {
             return false;
         }
     }
-    public function update_tarea($data, $condicion){
-        
-        $query = Database::getInstance()->db->query("UPDATE FROM tareas SET " . $data . " WHERE " . $condicion);
+    public static function update_tarea($data){
+
+        $query = Database::getInstance()->db->query("UPDATE FROM tareas SET $data WHERE tarea_id=2");
         if ($query) {
             return true;
         } else {
             return false;
         }
     }
-    public function delete_tarea($tarea_id){
+    public static function delete_tarea($tarea_id){
         
         $query = Database::getInstance()->db->prepare("DELETE FROM tareas WHERE tarea_id = ?");
         $query->setFetchMode(PDO::FETCH_ASSOC);
