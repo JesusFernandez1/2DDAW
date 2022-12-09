@@ -118,17 +118,19 @@ class filtrado
         }
     }
 
-    function validarTelefono($numero)
-    {
-        $reg = "#^\(?\d{2}\)?[\s\.-]?\d{4}[\s\.-]?\d{4}$#";
-        if (preg_match($reg, $numero)) {
-
+    function validarTelefono($numero){
+    
+        $telefonoEspacios = '/^([0-9]{3})( )([0-9]{3})( )([0-9]{3})$/';
+        $telefonoGuiones = '/^([0-9]{3})(-)([0-9]{3})(-)([0-9]{3})$/';
+        
+        if((preg_match($telefonoEspacios, $numero)) || (preg_match($telefonoGuiones, $numero))){
+        
             return true;
-        } else {
-
+        } else{
+        
             return false;
         }
-    }
+        }
 
     function comprobarCodigo($codigo)
     {

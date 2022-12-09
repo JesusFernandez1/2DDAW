@@ -1,5 +1,5 @@
 <?php
-require("Conectar.php"); 
+require_once("Conectar.php"); 
 class tareas_model {
 
     public static function get_tarea(){

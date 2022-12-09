@@ -38,7 +38,7 @@ function verPendiente()
     include("app/views/tareas_pendientes.php");
 }
 
-function guardar()
+function crear()
 {
 
     include('app/models/varios.php');
@@ -51,32 +51,16 @@ function guardar()
     
     if ($_GET) {
 
-        $identificacion = $_GET['identificacion'];
-        $nombre = $_GET['nombre'];
-        $apellido = $_GET['apellido'];
-        $telefono = $_GET['telefono'];
-        $descripcion = $_GET['descripcion'];
-        $correo = $_GET['correo'];
-        $direccion = $_GET['direccion'];
-        $poblacion = $_GET['poblacion'];
-        $codigo = $_GET['codigo'];
-        $provincia = $_GET['provincia'];
-        $estado = $_GET['estado'];
-        $inicio = $_GET['inicio'];
-        $operario = $_GET['operario'];
-        $final = $_GET['final'];
-        $anterior = $_GET['anterior'];
-        $posterior = $_GET['posterior'];
+        $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
 
-        $error = filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final);
-
-        $data = "'" . $identificacion . "','" . $nombre . "','" . $apellido . "','" . $telefono . "','" . $descripcion . "','" . $correo . "','" . $direccion . "','"
-            . $poblacion . "','" . $codigo . "','" . $provincia . "','" . $estado . "','" . $inicio . "','" . $operario . "','" . $final . "','" . $anterior . "','" . $posterior . "'";
+        $data = "'" . $_GET['identificacion'] . "','" . $_GET['nombre'] . "','" . $_GET['apellido'] . "','" . $_GET['telefono'] . "','" . $_GET['descripcion'] . "','" . $_GET['correo'] . "','" . $_GET['direccion'] . "','"
+            . $_GET['poblacion'] . "','" . $_GET['codigo'] . "','" . $_GET['provincia'] . "','" . $_GET['estado'] . "','" . $_GET['inicio'] . "','" . $_GET['operario'] . "','" . $_GET['final'] . "','" . $_GET['anterior'] . "','" . $_GET['posterior'] . "'";
 
         if (!$error->HayErrores()) {
-            $tareas = tareas_model::insert_tarea($data);
-            echo $blade->render('tareas_añadir', [
-                'error' => $error, 'provincias' => $provincias
+            tareas_model::insert_tarea($data);
+            $tareas = tareas_model::get_tarea();
+            echo $blade->render('tareas_mostrar', [
+                'tareas' => $tareas
             ]);
         } else {
             echo $blade->render('tareas_añadir', [
@@ -127,7 +111,7 @@ function update()
         $anterior = $_GET['anterior'];
         $posterior = $_GET['posterior'];
 
-        $error = filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final);
+        $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
 
         $data = " NIF/CIF='" . $identificacion . "',nombre='" . $nombre  . "',apellido='" . $apellido  . "',telefono='" . $telefono . "',descripcion='" . $descripcion  . "',correo='" . $correo . "',direccion='" . $direccion . "',poblacion='" . $poblacion
             . "',codigo_postal='" . $codigo . "',provincia='" . $provincia . "',estado_tarea='" . $estado  . "',fecha_inicio='" . $inicio  . "',operario='" . $operario  . "',fecha_final='" . $final  . "',anotacion_inicio='" . $anterior  . "',anotacion_final='" . $posterior . ' ';

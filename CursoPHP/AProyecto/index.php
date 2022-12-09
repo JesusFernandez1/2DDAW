@@ -6,7 +6,7 @@ define('CONTROLLERS_FOLDER', "app/controllers/");
 define('DEFAULT_CONTROLLER', "tareas");
 
 //Si no se indica una acción, esta acción es la que se usará
-define('DEFAULT_ACTION', "guardar");
+define('DEFAULT_ACTION', "ver");
 
 //Obtenemos el controlador.
 //Si el usuario no lo introduce, seleccionamos el de por defecto.
