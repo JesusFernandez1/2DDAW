@@ -4,8 +4,8 @@ class Database  {
 
     public $db;   
     private static $dns = "mysql:host=localhost;dbname=ahorcado"; 
-    private static $user = "root"; 
-    private static $pass = "";     
+    private static $user = "jesusfernandez"; 
+    private static $pass = "Cp6z#2x5";     
     private static $instance;
 
     public function __construct () {        
