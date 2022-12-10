@@ -20,22 +20,8 @@ class filtrado
         }
     }
 
-    function comprobar_fecha_actual($date)
-    {
-
-        $fecha_entrada = strtotime(date($date));
-        $fecha_actual = strtotime(date('d-m-Y'));
-
-        if (($fecha_actual >= $fecha_entrada) || ($fecha_actual <= $fecha_entrada)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     function comprobar_fecha($date)
     {
-
         $fecha_entrada = strtotime(date($date));
         $fecha_actual = strtotime(date('d-m-Y'));
 
@@ -118,19 +104,20 @@ class filtrado
         }
     }
 
-    function validarTelefono($numero){
-    
+    function validarTelefono($numero)
+    {
+
         $telefonoEspacios = '/^([0-9]{3})( )([0-9]{3})( )([0-9]{3})$/';
         $telefonoGuiones = '/^([0-9]{3})(-)([0-9]{3})(-)([0-9]{3})$/';
-        
-        if((preg_match($telefonoEspacios, $numero)) || (preg_match($telefonoGuiones, $numero))){
-        
+
+        if ((preg_match($telefonoEspacios, $numero)) || (preg_match($telefonoGuiones, $numero))) {
+
             return true;
-        } else{
-        
+        } else {
+
             return false;
         }
-        }
+    }
 
     function comprobarCodigo($codigo)
     {

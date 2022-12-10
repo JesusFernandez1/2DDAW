@@ -1,6 +1,6 @@
 <?php
 require("Conectar.php");
-class operarios_model
+class usuarios_model
 {
 
     public static function get_usuario()

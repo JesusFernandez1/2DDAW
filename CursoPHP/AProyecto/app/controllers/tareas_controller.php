@@ -1,10 +1,5 @@
 <?php
 
-function inicio()
-{
-    include('app/models/varios.php');
-    echo $blade->render('login');
-}
 
 function ver()
 {
@@ -12,31 +7,23 @@ function ver()
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
     $tareas = tareas_model::get_tarea();
-    if ($tareas === null) {
-        die("No existe ninguna tarea");
-    } else {
-        //Pasamos a la vista toda la información que se desea representar
-        //include("app/views/tareas_mostrar.php");
-        //print_r($tareas);
-        //die();
-        echo $blade->render('tareas_mostrar', [
-            'tareas' => $tareas
-        ]);
-    }
+    echo $blade->render('tareas_mostrar', [
+        'tareas' => $tareas
+    ]);
 }
 
 function verPendiente()
 {
     //Llamada al modelo
+    include('app/models/varios.php');
     require("app/models/tareas_model.php");
-    $modelo_tarea = new tareas_model();
-    $tareas = $modelo_tarea->get_tareaPendiente();
-    if ($tareas === null) {
-        die("No existe ninguna tarea");
-    }
-    //Pasamos a la vista toda la información que se desea representar
-    include("app/views/tareas_pendientes.php");
+    $tareas = tareas_model::get_tareaPendiente();
+
+    echo $blade->render('tareas_mostrar', [
+        'tareas' => $tareas
+    ]);
 }
+
 
 function crear()
 {
@@ -48,7 +35,7 @@ function crear()
     $error = new GestorErrores('<span style="color: red;">', '</span>');
 
     $provincias = tareas_model::get_provincias();
-    
+
     if ($_GET) {
 
         $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
@@ -74,16 +61,7 @@ function crear()
     }
 }
 
-function editar()
-{
-    include('app/models/varios.php');
-    require("app/models/tareas_model.php");
-    $id = $_GET['id'];
-    $tareas = tareas_model::getOnetarea($id);
-    require_once("views/Operaciones-Modificar.php");
-}
-
-function update()
+function modificar()
 {
 
     include('app/models/varios.php');
@@ -92,42 +70,28 @@ function update()
 
     $error = new GestorErrores('<span style="color: red;">', '</span>');
 
+    $provincias = tareas_model::get_provincias();
     if ($_GET) {
-
-        $identificacion = $_GET['identificacion'];
-        $nombre = $_GET['nombre'];
-        $apellido = $_GET['apellido'];
-        $telefono = $_GET['telefono'];
-        $descripcion = $_GET['descripcion'];
-        $correo = $_GET['correo'];
-        $direccion = $_GET['direccion'];
-        $poblacion = $_GET['poblacion'];
-        $codigo = $_GET['codigo'];
-        $provincia = $_GET['provincia'];
-        $estado = $_GET['estado'];
-        $inicio = $_GET['inicio'];
-        $operario = $_GET['operario'];
-        $final = $_GET['final'];
-        $anterior = $_GET['anterior'];
-        $posterior = $_GET['posterior'];
 
         $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
 
-        $data = " NIF/CIF='" . $identificacion . "',nombre='" . $nombre  . "',apellido='" . $apellido  . "',telefono='" . $telefono . "',descripcion='" . $descripcion  . "',correo='" . $correo . "',direccion='" . $direccion . "',poblacion='" . $poblacion
-            . "',codigo_postal='" . $codigo . "',provincia='" . $provincia . "',estado_tarea='" . $estado  . "',fecha_inicio='" . $inicio  . "',operario='" . $operario  . "',fecha_final='" . $final  . "',anotacion_inicio='" . $anterior  . "',anotacion_final='" . $posterior . ' ';
+        $data = "DNI='" . $_GET['identificacion'] . "', nombre='" . $_GET['nombre']  . "', apellido='" . $_GET['apellido']  . "', telefono='" . $_GET['telefono'] . "', descripcion='" . $_GET['descripcion']  . "', correo='" . $_GET['correo'] . "', direccion='" . $_GET['direccion'] . "', poblacion='" . $_GET['poblacion']
+            . "', codigo_postal='" . $_GET['codigo'] . "', provincia='" . $_GET['provincia'] . "', estado_tarea='" . $_GET['estado']  . "', fecha_creacion='" . $_GET['inicio']  . "', operario_id='" . $_GET['operario']  . "', fecha_final='" . $_GET['final']  . "', anotacion_inicio='" . $_GET['anterior']  . "', anotacion_final='" . $_GET['posterior'] . "'";
 
         if (!$error->HayErrores()) {
-            $tareas = tareas_model::update_tarea($data);
-            echo $blade->render('tareas_añadir');
+            tareas_model::update_tarea($data);
+            $tareas = tareas_model::get_tarea();
+            echo $blade->render('tareas_mostrar', [
+                'tareas' => $tareas
+            ]);
         } else {
-            echo $blade->render('tareas_añadir', [
-                'error' => $error
+            echo $blade->render('tareas_modificar', [
+                'error' => $error, 'provincias' => $provincias
             ]);
         }
-
     } else {
         echo $blade->render('tareas_modificar', [
-            'error' => $error
+            'error' => $error, 'provincias' => $provincias
         ]);
     }
 }
@@ -146,27 +110,31 @@ function delete()
 
 function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final)
 {
-    require('app/libreria/tareas_filtrado.php');
-    $filtrado = new filtrado;
+    include("app/libreria/Util-ValidarCodigo.php");
+    include("app/libreria/Util-ValidarNombre.php");
+    include("app/libreria/Util-FechaValida.php");
+    include("app/libreria/Util-ValidarCorreo.php");
+    include("app/libreria/Util-ValidarDNI.php");
+    include("app/libreria/Util-ValidarTelefono.php");
 
     if (empty($identificacion)) {
         $error->AnotaError('identificacion', 'No has introducido un dni');
-    } elseif (!$filtrado->validDniCifNie($identificacion)) {
+    } elseif (!validDniCifNie($identificacion)) {
         $error->AnotaError('identificacion', 'Formato no valido');
     }
     if (empty($nombre)) {
         $error->AnotaError('nombre', 'No has introducido un nombre');
-    } elseif (!$filtrado->validarNombreApellido($nombre)) {
+    } elseif (!validarNombreApellido($nombre)) {
         $error->AnotaError('nombre', 'Formato no valido, no introduzca numeros.');
     }
     if (empty($apellido)) {
         $error->AnotaError('apellido', 'No has introducido un apellido');
-    } elseif (!$filtrado->validarNombreApellido($apellido)) {
+    } elseif (!validarNombreApellido($apellido)) {
         $error->AnotaError('apellido', 'Formato no valido, no introduzca numeros.');
     }
     if (empty($telefono)) {
         $error->AnotaError('telefono', 'No has introducido un telefono');
-    } elseif (!$filtrado->validarTelefono($telefono)) {
+    } elseif (!validarTelefono($telefono)) {
         $error->AnotaError('telefono', 'Formato no valido');
     }
     if (empty($descripcion)) {
@@ -174,7 +142,7 @@ function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, 
     }
     if (empty($correo)) {
         $error->AnotaError('correo', 'No has introducido un correo');
-    } elseif (!$filtrado->validarEmail($correo)) {
+    } elseif (!validarEmail($correo)) {
         $error->AnotaError('correo', 'Formato no valido');
     }
     if (empty($direccion)) {
@@ -185,7 +153,7 @@ function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, 
     }
     if (empty($codigo)) {
         $error->AnotaError('codigo', 'No has introducido un codigo postal');
-    } elseif (!$filtrado->comprobarCodigo($codigo)) {
+    } elseif (!comprobarCodigo($codigo)) {
         $error->AnotaError('codigo', 'Formato no valido');
     }
     if (empty($provincia)) {
@@ -201,7 +169,7 @@ function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, 
         $error->AnotaError('operario', 'No has seleccionado un operario');
     }
     if (!empty($final)) {
-        if (!$filtrado->comprobar_fecha($final)) {
+        if (!comprobar_fecha($final)) {
             $error->AnotaError('final', 'No puede ser menor que la fecha actual');
         }
     }

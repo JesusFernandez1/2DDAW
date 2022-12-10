@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -49,8 +48,10 @@
     <div class="col-md-2">
       <label for="inputState" class="form-label">Provincia</label>
       <select id="inputState" class="form-select" name="provincia">{!!$error->ErrorFormateado("provincia")!!}
-        <option selected>Choose...</option>
-        <option>...</option>
+        <option disabled selected hidden>Choose</option>
+        @foreach ($provincias as $provincia)
+        <option>{{$provincia["nombre"]}}</option>
+        @endforeach
       </select>
     </div>
     <div class="col-md-3">
@@ -67,7 +68,7 @@
     </div>
     <div class="col-md-1">
       <label for="inputCity" class="form-label">Fecha de finalizacion</label>
-      <input type="date" class="form-control" id="inputCity" name="final">
+      <input type="date" class="form-control" id="inputCity" name="final">{!!$error->ErrorFormateado("final")!!}
     </div>
     <div class="col-md-4">
       <label for="inputCity" class="form-label">Anotacion inicio</label>

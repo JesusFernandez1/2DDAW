@@ -6,21 +6,28 @@
 </head>
 
 <body>
-   <h1>Ver datos de las tareas</h1>
-   <table border="1">
-      <tr>
-         <th>Nombre</th>
-         <th>Apellido</th>
-         <th>NIF/CIF</th>
-         <th>poblacion</th>
-         <th>codigo_postal</th>
-         <th>provincia</th>
-         <th>fecha_creacion</th>
-         <th>telefono</th>
-      </tr>
-      @foreach ($tareas as $tarea)
+   @extends('base')
+
+   @section('mostrarExtension')
+
+   <table class="table">
+      <thead class="thead-dark">
          <tr>
-            <td>{{$tarea['NIF/CIF']}}</td>
+            <th scope="col">DNI</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Poblacion</th>
+            <th scope="col">Codigo postal</th>
+            <th scope="col">Provincia</th>
+            <th scope="col">Creacion</th>
+            <th scope="col">Telefono</th>
+            <th scope="col">Estado</th>
+         </tr>
+      </thead>
+      <tbody>
+         @foreach ($tareas as $tarea)
+         <tr>
+            <td>{{$tarea['DNI']}}</td>
             <td>{{$tarea['nombre']}}</td>
             <td>{{$tarea['apellido']}}</td>
             <td>{{$tarea['poblacion']}}</td>
@@ -28,9 +35,11 @@
             <td>{{$tarea['provincia']}}</td>
             <td>{{$tarea['fecha_creacion']}}</td>
             <td>{{$tarea['telefono']}}</td>
+            <td>{{$tarea['estado_tarea']}}</td>
          </tr>
-      @endforeach
+         @endforeach
+      </tbody>
    </table>
+   @endsection
 </body>
-
 </html>

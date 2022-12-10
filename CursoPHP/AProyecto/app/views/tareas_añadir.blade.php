@@ -48,7 +48,7 @@
     <div class="col-md-2">
       <label for="inputState" class="form-label">Provincia</label>
       <select id="inputState" class="form-select" name="provincia">{!!$error->ErrorFormateado("provincia")!!}
-        <option disabled selected hidden>Choose</option>
+        <option disabled selected hidden></option>
         @foreach ($provincias as $provincia)
         <option>{{$provincia["nombre"]}}</option>
         @endforeach

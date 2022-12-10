@@ -6,21 +6,32 @@ function inicio()
     echo $blade->render('login');
 }
 
-function verOperarios()
+function login()
+{
+    include('app/models/varios.php');
+    require("app/models/usuarios_model.php");
+    if (usuarios_model::getOneUsuario($_GET['nombre'],$GET_['contraseña'])) {
+        echo $blade->render('header');
+    } else {
+        echo $blade->render('login');
+    }
+}
+
+function verusuarios()
 {
     //Llamada al modelo
     include('app/models/varios.php');
-    require("app/models/operarios_model.php");
-    $operarios = operarios_model::get_usuario();
-    if ($operarios === null) {
+    require("app/models/usuarios_model.php");
+    usuarios_model::get_usuario();
+    if ($usuarios === null) {
         die("No existe ninguna tarea");
     } else {
         //Pasamos a la vista toda la información que se desea representar
-        //include("app/views/operarios_mostrar.php");
-        //print_r($operarios);
+        //include("app/views/usuarios_mostrar.php");
+        //print_r($usuarios);
         //die();
-        echo $blade->render('operarios_mostrar', [
-            'operarios' => $operarios
+        echo $blade->render('usuarios_mostrar', [
+            'usuarios' => $usuarios
         ]);
     }
 }
@@ -29,7 +40,7 @@ function guardar()
 {
 
     include('app/models/varios.php');
-    require("app/models/operarios_model.php");
+    require("app/models/usuarios_model.php");
     require("app/models/GestorErrores.php");
 
     $error = new GestorErrores('<span style="color: red;">', '</span>');
@@ -47,66 +58,60 @@ function guardar()
         $data = "'" . $nombre . "','" . $apellido . "','" . $contraseña . "','" . $correo . "','" . $tipo . "'";
 
         if (!$error->HayErrores()) {
-            $operarios = operarios_model::insert_operario($data);
-            echo $blade->render('operarios_añadir');
+            usuarios_model::insert_operario($data);
+            echo $blade->render('usuarios_añadir');
         } else {
-            echo $blade->render('operarios_añadir', [
+            echo $blade->render('usuarios_añadir', [
                 'error' => $error
             ]);
         }
     } else {
-        echo $blade->render('operarios_añadir', [
+        echo $blade->render('usuarios_añadir', [
             'error' => $error
         ]);
     }
 }
 
-function update_operarios()
+function update_usuarios()
 {
 
     include('app/models/varios.php');
-    require("app/models/operarios_model.php");
+    require("app/models/usuarios_model.php");
     require("app/models/GestorErrores.php");
 
     $error = new GestorErrores('<span style="color: red;">', '</span>');
 
     if ($_GET) {
 
-        $nombre = $_GET['identificacion'];
-        $apellido = $_GET['apellido'];
-        $contraseña = $_GET['contraseña'];
-        $correo = $_GET['correo'];
-        $tipo = $_GET['tipo'];
+        $error = filtradoUsuario($error, $_GET['identificacion'], $_GET['apellido'], $_GET['contraseña'], $_GET['correo'], $_GET['tipo']);
 
-        $error = filtradoUsuario($error, $nombre, $apellido, $contraseña, $correo, $tipo);
-
-        $data = " nombre='" . $nombre . "',apellido='" . $apellido  . "',contraseña='" . $contraseña  . "',correo='" . $correo . "',tipo='" . $tipo  . ' ';
+        $data = " nombre='" . $_GET['identificacion'] . "',apellido='" . $_GET['apellido']  . "',contraseña='" . $_GET['contraseña']  . "',correo='" . $_GET['correo'] . "',tipo='" . $_GET['tipo']  . ' ';
 
         if (!$error->HayErrores()) {
-            $operarios = operarios_model::update_operario($data, 'usuario_id=2');
-            echo $blade->render('operarios_añadir');
+            usuarios_model::update_operario($data, 'usuario_id=2');
+            echo $blade->render('usuarios_añadir');
         } else {
-            echo $blade->render('operarios_añadir', [
+            echo $blade->render('usuarios_añadir', [
                 'error' => $error
             ]);
         }
     } else {
-        echo $blade->render('operarios_modificar', [
+        echo $blade->render('usuarios_modificar', [
             'error' => $error
         ]);
     }
 }
 
-function delete_operarios()
+function delete_usuarios()
 {
 
     //Llamada al modelo
     include('app/models/varios.php');
-    require("app/models/operarios_model.php");
-    if ($operarios === null) {
+    require("app/models/usuarios_model.php");
+    if ($usuarios === null) {
         die("No existe ninguna tarea");
     } else {
-        $operarios = operarios_model::delete_operario($tarea_id);
+        usuarios_model::delete_operario($tarea_id);
         echo $blade->render('menu.blade.php');
     }
 }

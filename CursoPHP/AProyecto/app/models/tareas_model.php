@@ -22,6 +22,16 @@ class tareas_model {
         return $provincias;
     }
 
+    public static function comprobar_provincia($nombre){
+
+        $query = Database::getInstance()->db->query("SELECT * FROM tbl_provincias WHERE nombre=$nombre");
+        if ($query) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public static function getOnetarea($condicion){
 
         $query = Database::getInstance()->db->query("SELECT * FROM tareas WHERE " . $condicion);
@@ -53,7 +63,7 @@ class tareas_model {
     }
     public static function update_tarea($data){
 
-        $query = Database::getInstance()->db->query("UPDATE FROM tareas SET $data WHERE tarea_id=2");
+        $query = Database::getInstance()->db->query("UPDATE tareas SET $data WHERE tarea_id=1");
         if ($query) {
             return true;
         } else {
