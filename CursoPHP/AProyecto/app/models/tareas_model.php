@@ -5,6 +5,7 @@ class tareas_model {
     public static function get_tarea(){
 
         $query = Database::getInstance()->db->query("SELECT * FROM tareas ORDER BY fecha_creacion DESC");
+        
         $tareas = array();
         while($tarea = $query->fetch()){
             $tareas[] = $tarea;
@@ -22,21 +23,31 @@ class tareas_model {
         return $provincias;
     }
 
-    public static function comprobar_provincia($nombre){
+    public static function comprobar_provincia($condicion){
 
-        $query = Database::getInstance()->db->query("SELECT * FROM tbl_provincias WHERE nombre=$nombre");
-        if ($query) {
-            return true;
-        } else {
-            return false;
+        $query = Database::getInstance()->db->query("SELECT * FROM tbl_provincias WHERE nombre = '$condicion'");
+        $provincias = array();
+        while($provincia = $query->fetch()){
+            $provincias[] = $provincia;
         }
+        return $provincias;
     }
 
-    public static function getOnetarea($condicion){
+    public static function getOnetarea($tarea_id){
 
-        $query = Database::getInstance()->db->query("SELECT * FROM tareas WHERE " . $condicion);
+        $query = Database::getInstance()->db->query("SELECT * FROM tareas WHERE tarea_id = '$tarea_id'");
         $tareas = array();
         while($tarea = $query->fetch(PDO::FETCH_ASSOC)){
+            $tareas[] = $tarea;
+        }
+        return $tareas;
+    }
+
+    public static function filtrar($nombre, $estado, $operario){
+
+        $query = Database::getInstance()->db->query("SELECT * FROM tareas WHERE nombre = '$nombre' OR estado_tarea = '$estado' OR operario_id = '$operario'");
+        $tareas = array();
+        while($tarea = $query->fetch()){
             $tareas[] = $tarea;
         }
         return $tareas;
@@ -61,9 +72,9 @@ class tareas_model {
             return false;
         }
     }
-    public static function update_tarea($data){
+    public static function update_tarea($data, $tarea_id){
 
-        $query = Database::getInstance()->db->query("UPDATE tareas SET $data WHERE tarea_id=1");
+        $query = Database::getInstance()->db->query("UPDATE tareas SET $data WHERE tarea_id = '$tarea_id'");
         if ($query) {
             return true;
         } else {

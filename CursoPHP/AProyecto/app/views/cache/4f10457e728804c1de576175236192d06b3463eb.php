@@ -20,21 +20,29 @@
         </a>
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="index.php?controller=login&action=inicio" class="nav-link px-2 text-secondary">Inicio</a></li>
+          <li><a href="index.php?controller=login&action=inicio" class="nav-link px-2 text-white">Inicio</a></li>
           <li><a href="index.php?controller=tareas&action=ver" class="nav-link px-2 text-white">Ver tareas</a></li>
+          <li><a href="index.php?controller=tareas&action=verCompleta" class="nav-link px-2 text-white">Ver tareas completas</a></li>
           <li><a href="index.php?controller=tareas&action=verPendiente" class="nav-link px-2 text-white">Ver tareas pendientes</a></li>
           <li><a href="index.php?controller=tareas&action=crear" class="nav-link px-2 text-white">Añadir</a></li>
-          <li><a href="index.php?controller=tareas&action=delete" class="nav-link px-2 text-white">Eliminar</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+         <a href="index.php?controller=tareas&action=filtrado" class="btn btn-primary" role="button">Filtrar</a>
         </form>
       </div>
     </div>
   </header>
 
   <?php echo $__env->yieldContent('mostrarExtension'); ?>
+
+  <?php echo $__env->yieldContent('mostrarAñadir'); ?>
+
+  <?php echo $__env->yieldContent('completarTarea'); ?>
+
+  <?php echo $__env->yieldContent('mostrarUpdate'); ?>
+
+  <?php echo $__env->yieldContent('eliminar'); ?>
  
 
   <section style="background-color: #ada4a4">

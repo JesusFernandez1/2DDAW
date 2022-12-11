@@ -8,7 +8,10 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="" class="row g-3">
+@extends('base')
+
+@section('mostrarAñadir')
+  <form action="" class="row g-3" method="POST">
     <div class="col-md-3">
       <label for="inputEmail4" class="form-label">NIF/CIF</label>
       <input type="text" class="form-control" name="identificacion">{!!$error->ErrorFormateado("identificacion")!!}
@@ -47,12 +50,13 @@
     </div>
     <div class="col-md-2">
       <label for="inputState" class="form-label">Provincia</label>
-      <select id="inputState" class="form-select" name="provincia">{!!$error->ErrorFormateado("provincia")!!}
-        <option disabled selected hidden></option>
+      <select id="inputState" class="form-select" name="provincia">
+        <option disabled selected></option>
         @foreach ($provincias as $provincia)
         <option>{{$provincia["nombre"]}}</option>
         @endforeach
       </select>
+      {!!$error->ErrorFormateado("provincia")!!}
     </div>
     <div class="col-md-3">
       <label for="inputCity" class="form-label">Estado</label>
@@ -60,11 +64,19 @@
     </div>
     <div class="col-md-1">
       <label for="inputZip" class="form-label">Fecha de creacion</label>
-      <input type="date" class="form-control" id="inputZip" name="inicio">{!!$error->ErrorFormateado("inicio")!!}
+      <input type="date" class="form-control" id="inputZip" name="inicio" value="<?php echo date("Y-m-d") ?>">{!!$error->ErrorFormateado("inicio")!!}
     </div>
-    <div class="col-md-1">
-      <label for="inputCity" class="form-label">Operario</label>
-      <input type="text" class="form-control" id="inputCity" name="operario">{!!$error->ErrorFormateado("operario")!!}
+    <div class="col-md-2">
+      <label for="inputState" class="form-label">Operarios</label>
+      <select id="inputState" class="form-select" name="operario">
+        <option disabled selected></option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      {!!$error->ErrorFormateado("operario")!!}
     </div>
     <div class="col-md-1">
       <label for="inputCity" class="form-label">Fecha de finalizacion</label>
@@ -72,15 +84,16 @@
     </div>
     <div class="col-md-4">
       <label for="inputCity" class="form-label">Anotacion inicio</label>
-      <input type="text" class="form-control" id="inputCity" name="anterior">
+      <textarea type="text" class="form-control" id="inputCity" name="anterior"></textarea>
     </div>
     <div class="col-md-4">
       <label for="inputCity" class="form-label">Anotacion final</label>
-      <input type="text" class="form-control" id="inputCity" name="posterior">
+      <textarea type="text" class="form-control" id="inputCity" name="posterior"></textarea>
     </div>
     <div class="col-12">
       <input type="submit" class="btn btn-primary" value="Insert">
     </div>
   </form>
+  @endsection
 </body>
 </html>

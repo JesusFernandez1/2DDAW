@@ -6,23 +6,35 @@
 </head>
 
 <body>
-   <h1>Ver datos de las usuarios</h1>
-   <table border="1">
-      <tr>
-         <th>Nombre</th>
-         <th>Apellido</th>
-         <th>Correo</th>
-         <th>Tipo</th>
-      </tr>
-      <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+   
+
+   <?php $__env->startSection('mostrarUsuarios'); ?>
+
+   <table class="table">
+      <thead class="thead-dark">
          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Tipo</th>
+         </tr>
+      </thead>
+      <tbody>
+         <?php $__currentLoopData = $usuarios; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $usuario): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+         <tr>
+            <td><?php echo e($usuario['usuario_id']); ?></td>
             <td><?php echo e($usuario['nombre']); ?></td>
             <td><?php echo e($usuario['apellido']); ?></td>
             <td><?php echo e($usuario['correo']); ?></td>
             <td><?php echo e($usuario['tipo']); ?></td>
+            <td><a href="index.php?controller=login&action=verOneUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-primary btn-sm" role="button">Modificar</a> <a href="index.php?controller=login&action=borrarUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-primary btn-sm" role="button">Eliminar</a></td>
          </tr>
-      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+      </tbody>
    </table>
+   <?php $__env->stopSection(); ?>
 </body>
-
-</html><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/usuarios_mostrar.blade.php ENDPATH**/ ?>
+</html>
+<?php echo $__env->make('base_usuarios', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/usuarios_mostrar.blade.php ENDPATH**/ ?>

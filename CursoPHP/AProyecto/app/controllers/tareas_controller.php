@@ -12,6 +12,37 @@ function ver()
     ]);
 }
 
+function filtrado()
+{
+    //Llamada al modelo
+    include('app/models/varios.php');
+    require("app/models/tareas_model.php");
+    require("app/models/GestorErrores.php");
+
+    $error = new GestorErrores('<span style="color: red;">', '</span>');
+    
+    if ($_POST) {
+
+        $tareas = tareas_model::filtrar($_POST['nombre'],$_POST['estado'],$_POST['operario']);
+        if (tareas_model::filtrar($_POST['nombre'],$_POST['estado'],$_POST['operario'])) {
+            echo $blade->render('tareas_mostrar', [
+                'tareas' => $tareas
+            ]);
+        } else {
+            $error->AnotaError('tarera', 'No se encontro ninguna tarea con dichos parametros');
+            echo $blade->render('buscador', [
+                '$error' => $error
+            ]);
+        }
+        
+    } else {
+        echo $blade->render('buscador', [
+            '$error' => $error
+        ]);
+    }
+    
+}
+
 function verPendiente()
 {
     //Llamada al modelo
@@ -24,6 +55,28 @@ function verPendiente()
     ]);
 }
 
+function verCompleta()
+{
+    //Llamada al modelo
+    include('app/models/varios.php');
+    require("app/models/tareas_model.php");
+    $tareas = tareas_model::get_tarea();
+    echo $blade->render('tareas_mostrar_completa', [
+        'tareas' => $tareas
+    ]);
+}
+
+function verEliminar()
+{
+    //Llamada al modelo
+    include('app/models/varios.php');
+    require("app/models/tareas_model.php");
+    $id = $_GET['id'];
+    $tareaUnica = tareas_model::getOnetarea($id);
+    echo $blade->render('tareas_eliminar', [
+        'tareas' => $tareaUnica
+    ]);
+}
 
 function crear()
 {
@@ -36,12 +89,12 @@ function crear()
 
     $provincias = tareas_model::get_provincias();
 
-    if ($_GET) {
+    if ($_POST) {
 
-        $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
+        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), $_POST['estado'], $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
 
-        $data = "'" . $_GET['identificacion'] . "','" . $_GET['nombre'] . "','" . $_GET['apellido'] . "','" . $_GET['telefono'] . "','" . $_GET['descripcion'] . "','" . $_GET['correo'] . "','" . $_GET['direccion'] . "','"
-            . $_GET['poblacion'] . "','" . $_GET['codigo'] . "','" . $_GET['provincia'] . "','" . $_GET['estado'] . "','" . $_GET['inicio'] . "','" . $_GET['operario'] . "','" . $_GET['final'] . "','" . $_GET['anterior'] . "','" . $_GET['posterior'] . "'";
+        $data = "'" . $_POST['identificacion'] . "','" . $_POST['nombre'] . "','" . $_POST['apellido'] . "','" . $_POST['telefono'] . "','" . $_POST['descripcion'] . "','" . $_POST['correo'] . "','" . $_POST['direccion'] . "','"
+            . $_POST['poblacion'] . "','" . $_POST['codigo'] . "','" . filter_input(INPUT_POST,'provincia') . "','" . $_POST['estado'] . "','" . $_POST['inicio'] . "','" . filter_input(INPUT_POST,'operario') . "','" . $_POST['final'] . "','" . $_POST['anterior'] . "','" . $_POST['posterior'] . "'";
 
         if (!$error->HayErrores()) {
             tareas_model::insert_tarea($data);
@@ -61,51 +114,81 @@ function crear()
     }
 }
 
-function modificar()
+function ModificarUnaTarea()
 {
-
+    //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
     require("app/models/GestorErrores.php");
 
+    $id = $_GET['id'];
+    $tareaUnica = tareas_model::getOnetarea($id);
     $error = new GestorErrores('<span style="color: red;">', '</span>');
-
     $provincias = tareas_model::get_provincias();
-    if ($_GET) {
+    if ($_POST) {
 
-        $error = filtradoCadena($error, $_GET['identificacion'], $_GET['nombre'], $_GET['apellido'], $_GET['telefono'], $_GET['descripcion'], $_GET['correo'], $_GET['direccion'], $_GET['poblacion'], $_GET['codigo'], $_GET['provincia'], $_GET['estado'], $_GET['inicio'], $_GET['operario'], $_GET['final']);
+        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), $_POST['estado'], $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
 
-        $data = "DNI='" . $_GET['identificacion'] . "', nombre='" . $_GET['nombre']  . "', apellido='" . $_GET['apellido']  . "', telefono='" . $_GET['telefono'] . "', descripcion='" . $_GET['descripcion']  . "', correo='" . $_GET['correo'] . "', direccion='" . $_GET['direccion'] . "', poblacion='" . $_GET['poblacion']
-            . "', codigo_postal='" . $_GET['codigo'] . "', provincia='" . $_GET['provincia'] . "', estado_tarea='" . $_GET['estado']  . "', fecha_creacion='" . $_GET['inicio']  . "', operario_id='" . $_GET['operario']  . "', fecha_final='" . $_GET['final']  . "', anotacion_inicio='" . $_GET['anterior']  . "', anotacion_final='" . $_GET['posterior'] . "'";
+        $data = "DNI='" . $_POST['identificacion'] . "', nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', telefono='" . $_POST['telefono'] . "', descripcion='" . $_POST['descripcion']  . "', correo='" . $_POST['correo'] . "', direccion='" . $_POST['direccion'] . "', poblacion='" . $_POST['poblacion']
+            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . $_POST['estado']  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
 
         if (!$error->HayErrores()) {
-            tareas_model::update_tarea($data);
+            
+            tareas_model::update_tarea($data,$id);
             $tareas = tareas_model::get_tarea();
             echo $blade->render('tareas_mostrar', [
                 'tareas' => $tareas
             ]);
         } else {
             echo $blade->render('tareas_modificar', [
-                'error' => $error, 'provincias' => $provincias
+                'error' => $error, 'provincias' => $provincias, 'tareas' => $tareaUnica
             ]);
         }
     } else {
         echo $blade->render('tareas_modificar', [
-            'error' => $error, 'provincias' => $provincias
+            'tareas' => $tareaUnica, 'provincias' => $provincias, 'error' => $error
         ]);
     }
+    
+}
+
+function completar()
+{
+    //Llamada al modelo
+    include('app/models/varios.php');
+    require("app/models/tareas_model.php");
+    $id = $_GET['id'];
+    $tareaUnica = tareas_model::getOnetarea($id);
+
+    if ($_POST) {
+
+        $data = "DNI='" . $_POST['identificacion'] . "', nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', telefono='" . $_POST['telefono'] . "', descripcion='" . $_POST['descripcion']  . "', correo='" . $_POST['correo'] . "', direccion='" . $_POST['direccion'] . "', poblacion='" . $_POST['poblacion']
+            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . $_POST['estado']  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
+            
+            tareas_model::update_tarea($data,$id);
+            $tareas = tareas_model::get_tarea();
+            echo $blade->render('tareas_mostrar', [
+                'tareas' => $tareas
+            ]);
+        } else {
+        echo $blade->render('tareas_completar', [
+            'tareas' => $tareaUnica
+        ]);
+    }
+
 }
 
 function delete()
 {
     //Llamada al modelo
+    $id = $_GET['id'];
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
-    if ($tareas === null) {
-        die("No existe ninguna tarea");
-    }
-    $tareas = tareas_model::delete_tarea($id);
-    echo $blade->render('login');
+    tareas_model::delete_tarea($id);
+    $tareas = tareas_model::get_tarea();
+    echo $blade->render('tareas_mostrar', [
+        'tareas' => $tareas
+    ]);
 }
 
 function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final)
@@ -134,9 +217,7 @@ function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, 
     }
     if (empty($telefono)) {
         $error->AnotaError('telefono', 'No has introducido un telefono');
-    } elseif (!validarTelefono($telefono)) {
-        $error->AnotaError('telefono', 'Formato no valido');
-    }
+    } 
     if (empty($descripcion)) {
         $error->AnotaError('descripcion', 'No has introducido una descripcion');
     }
@@ -163,13 +244,15 @@ function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, 
         $error->AnotaError('estado', 'No has seleccionado un estado');
     }
     if (empty($inicio)) {
+        $error->AnotaError('inicio', 'No puede estar vacia');
+    } elseif (comprobar_fecha_actual($inicio)) {
         $error->AnotaError('inicio', 'No puede ser distinta a la de hoy');
     }
     if (empty($operario)) {
         $error->AnotaError('operario', 'No has seleccionado un operario');
     }
     if (!empty($final)) {
-        if (!comprobar_fecha($final)) {
+        if (comprobar_fecha($final, $inicio)) {
             $error->AnotaError('final', 'No puede ser menor que la fecha actual');
         }
     }

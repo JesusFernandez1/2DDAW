@@ -21,28 +21,22 @@
 
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
           <li><a href="index.php?controller=login&action=inicio" class="nav-link px-2 text-white">Inicio</a></li>
-          <li><a href="index.php?controller=tareas&action=ver" class="nav-link px-2 text-white">Ver tareas</a></li>
-          <li><a href="index.php?controller=tareas&action=verCompleta" class="nav-link px-2 text-white">Ver tareas completas</a></li>
-          <li><a href="index.php?controller=tareas&action=verPendiente" class="nav-link px-2 text-white">Ver tareas pendientes</a></li>
-          <li><a href="index.php?controller=tareas&action=crear" class="nav-link px-2 text-white">Añadir</a></li>
+          <li><a href="index.php?controller=login&action=verUsuarios" class="nav-link px-2 text-white">Ver usuarios</a></li>
+          <li><a href="index.php?controller=login&action=crear" class="nav-link px-2 text-white">Añadir</a></li>
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-         <a href="index.php?controller=tareas&action=filtrado" class="btn btn-primary" role="button">Filtrar</a>
+         <p>Introduzca el id del usuario a buscar:</p> <input type="text" class="form-control form-control-dark" placeholder="Search..." name="buscador">
         </form>
       </div>
     </div>
   </header>
 
-  @yield('mostrarExtension')
+  <?php echo $__env->yieldContent('mostrarUsuarios'); ?>
 
-  @yield('mostrarAñadir')
+  <?php echo $__env->yieldContent('mostrarAñadirUsuario'); ?>
 
-  @yield('completarTarea')
-
-  @yield('mostrarUpdate')
-
-  @yield('eliminar')
+  <?php echo $__env->yieldContent('mostrarUpdateUsuario'); ?>
  
 
   <section style="background-color: #ada4a4">
@@ -183,4 +177,4 @@
   </section>
 </body>
 
-</html>
+</html><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/base_usuarios.blade.php ENDPATH**/ ?>

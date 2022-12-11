@@ -36,6 +36,8 @@
             <td>{{$tarea['fecha_creacion']}}</td>
             <td>{{$tarea['telefono']}}</td>
             <td>{{$tarea['estado_tarea']}}</td>
+            <td><a href="index.php?controller=tareas&action=ModificarUnaTarea&id={{$tarea['tarea_id']}}" class="btn btn-primary btn-sm" role="button">Modificar</a> <a href="index.php?controller=tareas&action=verEliminar&id={{$tarea['tarea_id']}}" class="btn btn-primary btn-sm" role="button">Eliminar</a>
+            <a href="index.php?controller=tareas&action=completar&id={{$tarea['tarea_id']}}" class="btn btn-primary btn-sm" role="button">Completar</a></td>
          </tr>
          @endforeach
       </tbody>

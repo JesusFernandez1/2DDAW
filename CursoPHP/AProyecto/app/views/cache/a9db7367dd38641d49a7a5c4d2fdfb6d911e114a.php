@@ -22,7 +22,7 @@
 </style>
 
 <body>
-    <form action="">
+    <form action="" method="POST">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -37,17 +37,14 @@
                                         <label class="form-label" for="typeEmailX">Name</label>
                                     </div>
                                     <div class="form-outline form-white mb-4">
-                                        <input type="text" id="typePasswordX" class="form-control form-control-lg" name="contraseña"/>
+                                        <input type="password" id="typePasswordX" class="form-control form-control-lg" name="contraseña"/>
                                         <label class="form-label" for="typePasswordX">Password</label>
                                     </div>
                                     <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-                                    <a href="index.php?controller=login&action=login" class="btn btn-primary btn-lg" role="button">Login</a>
-
+                                    <input type="submit" class="btn btn-primary" value="Login">
                                 </div>
                                 <div>
-                                    <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a>
-                                    </p>
+                                    <p><?php echo $error->ErrorFormateado("usuario"); ?></p>
                                 </div>
 
                             </div>
@@ -58,5 +55,4 @@
         </section>
     </form>
 </body>
-
 </html><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/login.blade.php ENDPATH**/ ?>
