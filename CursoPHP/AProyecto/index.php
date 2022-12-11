@@ -3,10 +3,10 @@
 define('CONTROLLERS_FOLDER', "app/controllers/");
 
 //Si no se indica un controlador, este es el controlador que se usará
-define('DEFAULT_CONTROLLER', "tareas");
+define('DEFAULT_CONTROLLER', "login");
 
 //Si no se indica una acción, esta acción es la que se usará
-define('DEFAULT_ACTION', "ver");
+define('DEFAULT_ACTION', "inicio");
 
 //Obtenemos el controlador.
 //Si el usuario no lo introduce, seleccionamos el de por defecto.
