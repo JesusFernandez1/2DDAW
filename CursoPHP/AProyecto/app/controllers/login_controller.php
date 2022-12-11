@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * inicio
+ * Funcion que hace el login y comprueba que las credenciales sean correctas
+ * @return void
+ */
 function inicio()
 {
     include('app/models/varios.php');
@@ -27,6 +32,11 @@ function inicio()
     }
 }
 
+/**
+ * login
+ * Funcion para que al seleccionar la seccion de usuarios tras pasar el login, se muestre la pagina inicial
+ * @return void
+ */
 function login()
 {
     include('app/models/varios.php');
@@ -37,36 +47,13 @@ function login()
     echo $blade->render('usuarios_mostrar', [
         'usuarios' => $usuarios
     ]);
-
 }
 
-function buscar()
-{
-    include('app/models/varios.php');
-    require("app/models/usuarios_model.php");
-    $usuarios = usuarios_model::get_usuarios();
-    $id = $_POST['buscador'];
-
-    if ($_POST) {
-
-        if (is_nan($id)) {
-            $usuario = usuarios_model::getUsuario($id);
-            echo $blade->render('usuarios_mostrar', [
-                'usuarios' => $usuario
-            ]);
-        } else {
-            echo $blade->render('usuarios_mostrar', [
-                'usuarios' => $usuarios
-            ]);
-        }
-        
-    } else {
-        echo $blade->render('usuarios_mostrar', [
-            'usuarios' => $usuarios
-        ]);
-    }
-}
-
+/**
+ * verUsuarios
+ * Funcion que muestra una vista con todos los usuarios y sus datos
+ * @return void
+ */
 function verUsuarios()
 {
     include('app/models/varios.php');
@@ -78,6 +65,11 @@ function verUsuarios()
     ]);
 }
 
+/**
+ * crear
+ * Funcion para crear a un usuario pasando antes por un filtro
+ * @return void
+ */
 function crear()
 {
 
@@ -89,9 +81,9 @@ function crear()
 
     if ($_POST) {
 
-        $error = filtradoUsuario($error, $_POST['nombre'], $_POST['apellido'], $_POST['contraseña'], $_POST['correo'], $_POST['tipo']);
+        $error = filtradoUsuario($error, $_POST['nombre'], $_POST['apellido'], $_POST['contraseña'], $_POST['correo'], filter_input(INPUT_POST,'tipo'));
 
-        $data = "'" . $_POST['nombre'] . "','" . $_POST['apellido'] . "','" . $_POST['contraseña'] . "','" . $_POST['correo'] . "','" . $_POST['tipo'] . "'";
+        $data = "'" . $_POST['nombre'] . "','" . $_POST['apellido'] . "','" . $_POST['contraseña'] . "','" . $_POST['correo'] . "','" . filter_input(INPUT_POST,'tipo') . "'";
 
         if (!$error->HayErrores()) {
             usuarios_model::insert_usuario($data);
@@ -111,6 +103,11 @@ function crear()
     }
 }
 
+/**
+ * verOneUsuario
+ * Funcion para obtener un usuario concreto al hacer click en modificar y mostrar la vista donde sale dicho usuario
+ * @return void
+ */
 function verOneUsuario()
 {
     //Llamada al modelo
@@ -122,9 +119,9 @@ function verOneUsuario()
     $error = new GestorErrores('<span style="color: red;">', '</span>');
     if ($_POST) {
 
-        $error = filtradoUsuario($error, $_POST['nombre'], $_POST['apellido'], $_POST['contraseña'], $_POST['correo'], $_POST['tipo']);
+        $error = filtradoUsuario($error, $_POST['nombre'], $_POST['apellido'], $_POST['contraseña'], $_POST['correo'], filter_input(INPUT_POST,'tipo'));
 
-        $data = "nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', contraseña='" . $_POST['contraseña']  . "', correo='" . $_POST['correo']  . "', tipo='" . $_POST['tipo'] . "'";
+        $data = "nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', contraseña='" . $_POST['contraseña']  . "', correo='" . $_POST['correo']  . "', tipo='" . filter_input(INPUT_POST,'tipo') . "'";
 
         if (!$error->HayErrores()) {
 
@@ -145,6 +142,28 @@ function verOneUsuario()
     }
 }
 
+/**
+ * verBorrarUsuario
+ * Funcion que te muestra una vista donde sale la tarea seleccionada para confirmar si quiere borrar o no
+ * @return void
+ */
+function verBorrarUsuario()
+{
+    //Llamada al modelo
+    $id = $_GET['id'];
+    include('app/models/varios.php');
+    require("app/models/usuarios_model.php");
+    $usuarios = usuarios_model::getUsuario($id);
+    echo $blade->render('usuarios_eliminar', [
+        'usuarios' => $usuarios
+    ]);
+}
+
+/**
+ * borrarUsuario
+ * Si se cofirma la accion de borrar, esta se borra teniendo como referencia su id
+ * @return void
+ */
 function borrarUsuario()
 {
     //Llamada al modelo
@@ -157,6 +176,10 @@ function borrarUsuario()
         'usuarios' => $usuarios
     ]);
 }
+
+/**
+ * Filtrado base donde hacemos todas las comprobaciones necesarias para los usuarios con el uso de expresiones regulares y demas
+ */
 
 function filtradoUsuario($error, $nombre, $apellido, $contraseña, $correo, $tipo)
 {
@@ -174,7 +197,7 @@ function filtradoUsuario($error, $nombre, $apellido, $contraseña, $correo, $tip
         $error->AnotaError('apellido', 'Formato no valido, no introduzca numeros.');
     }
     if (empty($contraseña)) {
-        $error->AnotaError('telefono', 'No has introducido una contraseña');
+        $error->AnotaError('contraseña', 'No has introducido una contraseña');
     }
     if (empty($correo)) {
         $error->AnotaError('correo', 'No has introducido un correo');

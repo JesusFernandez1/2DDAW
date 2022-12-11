@@ -33,9 +33,14 @@
       <input type="text" class="form-control" name="correo" value="<?php echo e($usuario['correo']); ?>"><?php echo $error->ErrorFormateado("correo"); ?>
 
     </div>
-    <div class="col-3">
-      <label for="inputAddress2" class="form-label">Tipo</label>
-      <input type="text" class="form-control" placeholder="Apartment, studio, or floor" name="tipo" value="<?php echo e($usuario['tipo']); ?>"><?php echo $error->ErrorFormateado("tipo"); ?>
+    <div class="col-md-3">
+      <label for="inputState" class="form-label">Tipo</label>
+      <select id="inputState" class="form-select" name="tipo">
+        <option selected><?php echo e($usuario['tipo']); ?></option>
+        <option>Admin</option>
+        <option>Operario</option>
+      </select>
+      <?php echo $error->ErrorFormateado("tipo"); ?>
 
     </div>
     <div class="col-12">

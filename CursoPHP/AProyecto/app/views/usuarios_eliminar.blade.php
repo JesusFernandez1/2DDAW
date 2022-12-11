@@ -6,15 +6,15 @@
 </head>
 
 <body>
-
    @extends('base_usuarios')
 
-   @section('mostrarUsuarios')
+   @section('eliminarUsuario')
+
+   <h1>¿Estas seguro de eliminar el usuario?</h1>
 
    <table class="table">
       <thead class="thead-dark">
          <tr>
-            <th scope="col">ID</th>
             <th scope="col">Nombre</th>
             <th scope="col">Apellido</th>
             <th scope="col">Correo</th>
@@ -24,12 +24,11 @@
       <tbody>
          @foreach ($usuarios as $usuario)
          <tr>
-            <td>{{$usuario['usuario_id']}}</td>
             <td>{{$usuario['nombre']}}</td>
             <td>{{$usuario['apellido']}}</td>
             <td>{{$usuario['correo']}}</td>
             <td>{{$usuario['tipo']}}</td>
-            <td><a href="index.php?controller=login&action=verOneUsuario&id={{$usuario['usuario_id']}}" class="btn btn-primary btn-sm" role="button">Modificar</a> <a href="index.php?controller=login&action=verBorrarUsuario&id={{$usuario['usuario_id']}}" class="btn btn-primary btn-sm" role="button">Eliminar</a></td>
+            <td><a href="index.php?controller=login&action=borrarUsuario&id={{$usuario['usuario_id']}}" class="btn btn-primary btn-sm" role="button">Si</a> <a href="index.php?controller=login&action=login" class="btn btn-primary btn-sm" role="button">No</a>
          </tr>
          @endforeach
       </tbody>

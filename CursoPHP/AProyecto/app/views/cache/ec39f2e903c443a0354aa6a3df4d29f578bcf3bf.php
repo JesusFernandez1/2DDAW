@@ -70,8 +70,15 @@
 
     </div>
     <div class="col-md-3">
-      <label for="inputCity" class="form-label">Estado</label>
-      <input type="text" class="form-control" id="inputCity" name="estado" value="<?php echo e($tarea['estado_tarea']); ?>"><?php echo $error->ErrorFormateado("estado"); ?>
+      <label for="inputState" class="form-label">Estado</label>
+      <select id="inputState" class="form-select" name="estado">
+        <option selected><?php echo e($tarea['estado_tarea']); ?></option>
+        <option>P</option>
+        <option>R</option>
+        <option>C</option>
+        <option>B</option>
+      </select>
+      <?php echo $error->ErrorFormateado("estado"); ?>
 
     </div>
     <div class="col-md-1">

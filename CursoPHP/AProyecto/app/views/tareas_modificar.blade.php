@@ -60,8 +60,15 @@
       {!!$error->ErrorFormateado("provincia")!!}
     </div>
     <div class="col-md-3">
-      <label for="inputCity" class="form-label">Estado</label>
-      <input type="text" class="form-control" id="inputCity" name="estado" value="{{$tarea['estado_tarea']}}">{!!$error->ErrorFormateado("estado")!!}
+      <label for="inputState" class="form-label">Estado</label>
+      <select id="inputState" class="form-select" name="estado">
+        <option selected>{{$tarea['estado_tarea']}}</option>
+        <option>P</option>
+        <option>R</option>
+        <option>C</option>
+        <option>B</option>
+      </select>
+      {!!$error->ErrorFormateado("estado")!!}
     </div>
     <div class="col-md-1">
       <label for="inputZip" class="form-label">Fecha de creacion</label>

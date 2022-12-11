@@ -10,11 +10,15 @@
 </head>
 
 <body>
+    
+    <?php $__env->startSection('busqueda'); ?>
     <form action="" method="POST">
         <input type="text" class="form-control form-control-dark" placeholder="Search..." name="nombre">
         <input type="text" class="form-control form-control-dark" placeholder="Search..." name="estado">
         <input type="text" class="form-control form-control-dark" placeholder="Search..." name="operario">
         <input type="submit" class="btn btn-primary" value="Insert">
     </form>
+    <?php $__env->stopSection(); ?>
 </body>
-</html><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/buscador.blade.php ENDPATH**/ ?>
+</html>
+<?php echo $__env->make('base', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\2DAW\CursoPHP\AProyecto\app\views/buscador.blade.php ENDPATH**/ ?>

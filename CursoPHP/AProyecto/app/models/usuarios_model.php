@@ -2,7 +2,12 @@
 require("Conectar.php");
 class usuarios_model
 {
-
+    
+    /**
+     * get_usuarios
+     * Consulta donde obtenemos todos los usuarios para poder mostrarlos u otras acciones
+     * @return void
+     */
     public static function get_usuarios()
     {
 
@@ -13,7 +18,13 @@ class usuarios_model
         }
         return $usuarios;
     }
-
+    
+    /**
+     * getUsuario
+     * Consulta para obtener un usuario en concreto y poder realizar las acciones que se requieren a traves de su id
+     * @param  mixed $id
+     * @return void
+     */
     public static function getUsuario($id)
     {
 
@@ -24,7 +35,14 @@ class usuarios_model
         }
         return $usuarios;
     }
-
+    
+    /**
+     * getOneUsuario
+     * Consulta parecida a la anterior pero esta la usamos para comprobar si el usuario que hace login existe en nuestra base de datos
+     * @param  mixed $nombre
+     * @param  mixed $contrase
+     * @return void
+     */
     public static function getOneUsuario($nombre, $contraseña)
     {
 
@@ -35,7 +53,13 @@ class usuarios_model
         }
         return $usuarios;
     }
-
+    
+    /**
+     * insert_usuario
+     * Consulta para insertar un usuario pasandole los datos introducidos
+     * @param  mixed $data
+     * @return void
+     */
     public static function insert_usuario($data)
     {
 
@@ -45,7 +69,14 @@ class usuarios_model
         } else {
             return false;
         }
-    }
+    }    
+    /**
+     * update_usuario
+     * Consulta para modificar un usuario pasandole los datos y la id de referncia
+     * @param  mixed $data
+     * @param  mixed $usuario_id
+     * @return void
+     */
     public static function update_usuario($data, $usuario_id){
 
         $query = Database::getInstance()->db->query("UPDATE usuarios SET $data WHERE usuario_id = '$usuario_id'");
@@ -54,7 +85,13 @@ class usuarios_model
         } else {
             return false;
         }
-    }
+    }    
+    /**
+     * delete_usuario
+     * Consulta para borrar el usuario seleccionado con su id
+     * @param  mixed $usuario_id
+     * @return void
+     */
     public static function delete_usuario($usuario_id)
     {
 

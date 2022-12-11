@@ -34,9 +34,13 @@
     </div>
   </header>
 
+  <!-- base que esta prensente en casi todo nuestro proyecto y muestra las extensiones que hemos creado en otras vistas -->
+
   <?php echo $__env->yieldContent('mostrarExtension'); ?>
 
   <?php echo $__env->yieldContent('mostrarAñadir'); ?>
+
+  <?php echo $__env->yieldContent('busqueda'); ?>
 
   <?php echo $__env->yieldContent('completarTarea'); ?>
 
@@ -172,7 +176,7 @@
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2022 Copyright:
-      <a href="/"> Construccion</a>
+      <a href="https://github.com/JesusFernandez1/2DDAW/commits/master/CursoPHP/AProyecto"> Construccion</a>
     </div>
     <!-- Copyright -->
 

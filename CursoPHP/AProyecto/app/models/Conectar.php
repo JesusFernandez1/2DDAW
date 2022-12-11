@@ -1,5 +1,8 @@
 <?php 
 
+/**
+ * Database donde hacemos las conexcion con la base de datos con PDO
+ */
 class Database  { 
 
     public $db;   

@@ -1,6 +1,11 @@
 <?php
 
 
+/**
+ * ver
+ * Funcion para mostrar la vista donde se cargan todas las tareas
+ * @return void
+ */
 function ver()
 {
     //Llamada al modelo
@@ -12,6 +17,11 @@ function ver()
     ]);
 }
 
+/**
+ * filtrado
+ * Apartado donde comprobamos
+ * @return void
+ */
 function filtrado()
 {
     //Llamada al modelo
@@ -43,6 +53,11 @@ function filtrado()
     
 }
 
+/**
+ * verPendiente
+ * Funcion para ver todas las tareas pendientes
+ * @return void
+ */
 function verPendiente()
 {
     //Llamada al modelo
@@ -55,6 +70,11 @@ function verPendiente()
     ]);
 }
 
+/**
+ * verCompleta
+ * Funcion para ver todos los detalles de todas las tareas
+ * @return void
+ */
 function verCompleta()
 {
     //Llamada al modelo
@@ -66,6 +86,11 @@ function verCompleta()
     ]);
 }
 
+/**
+ * verEliminar
+ * Funcion que nos muestra una vista donde esta la tarea seleccionada a eliminar para confirmar si quiere borrarla o no
+ * @return void
+ */
 function verEliminar()
 {
     //Llamada al modelo
@@ -78,6 +103,11 @@ function verEliminar()
     ]);
 }
 
+/**
+ * crear
+ * Funcion para crear una nueva tarea pasando esta por un filtrado previo que debera pasar para poder añadirla
+ * @return void
+ */
 function crear()
 {
 
@@ -91,10 +121,10 @@ function crear()
 
     if ($_POST) {
 
-        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), $_POST['estado'], $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
+        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), filter_input(INPUT_POST,'estado'), $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
 
         $data = "'" . $_POST['identificacion'] . "','" . $_POST['nombre'] . "','" . $_POST['apellido'] . "','" . $_POST['telefono'] . "','" . $_POST['descripcion'] . "','" . $_POST['correo'] . "','" . $_POST['direccion'] . "','"
-            . $_POST['poblacion'] . "','" . $_POST['codigo'] . "','" . filter_input(INPUT_POST,'provincia') . "','" . $_POST['estado'] . "','" . $_POST['inicio'] . "','" . filter_input(INPUT_POST,'operario') . "','" . $_POST['final'] . "','" . $_POST['anterior'] . "','" . $_POST['posterior'] . "'";
+            . $_POST['poblacion'] . "','" . $_POST['codigo'] . "','" . filter_input(INPUT_POST,'provincia') . "','" . filter_input(INPUT_POST,'estado') . "','" . $_POST['inicio'] . "','" . filter_input(INPUT_POST,'operario') . "','" . $_POST['final'] . "','" . $_POST['anterior'] . "','" . $_POST['posterior'] . "'";
 
         if (!$error->HayErrores()) {
             tareas_model::insert_tarea($data);
@@ -114,6 +144,11 @@ function crear()
     }
 }
 
+/**
+ * ModificarUnaTarea
+ * Funcion para poder modificar cualquier dato de la tarea seleccionada obteneida a traves de una id y pasando por un filtro
+ * @return void
+ */
 function ModificarUnaTarea()
 {
     //Llamada al modelo
@@ -127,10 +162,10 @@ function ModificarUnaTarea()
     $provincias = tareas_model::get_provincias();
     if ($_POST) {
 
-        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), $_POST['estado'], $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
+        $error = filtradoCadena($error, $_POST['identificacion'], $_POST['nombre'], $_POST['apellido'], $_POST['telefono'], $_POST['descripcion'], $_POST['correo'], $_POST['direccion'], $_POST['poblacion'], $_POST['codigo'], filter_input(INPUT_POST,'provincia'), filter_input(INPUT_POST,'estado'), $_POST['inicio'], filter_input(INPUT_POST,'operario'), $_POST['final']);
 
         $data = "DNI='" . $_POST['identificacion'] . "', nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', telefono='" . $_POST['telefono'] . "', descripcion='" . $_POST['descripcion']  . "', correo='" . $_POST['correo'] . "', direccion='" . $_POST['direccion'] . "', poblacion='" . $_POST['poblacion']
-            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . $_POST['estado']  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
+            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . filter_input(INPUT_POST,'estado')  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
 
         if (!$error->HayErrores()) {
             
@@ -152,6 +187,11 @@ function ModificarUnaTarea()
     
 }
 
+/**
+ * completar
+ * Funcion para que los operarios puedan modificar la tarea de forma que este completada
+ * @return void
+ */
 function completar()
 {
     //Llamada al modelo
@@ -163,7 +203,7 @@ function completar()
     if ($_POST) {
 
         $data = "DNI='" . $_POST['identificacion'] . "', nombre='" . $_POST['nombre']  . "', apellido='" . $_POST['apellido']  . "', telefono='" . $_POST['telefono'] . "', descripcion='" . $_POST['descripcion']  . "', correo='" . $_POST['correo'] . "', direccion='" . $_POST['direccion'] . "', poblacion='" . $_POST['poblacion']
-            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . $_POST['estado']  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
+            . "', codigo_postal='" . $_POST['codigo'] . "', provincia='" . filter_input(INPUT_POST,'provincia') . "', estado_tarea='" . filter_input(INPUT_POST,'estado')  . "', fecha_creacion='" . $_POST['inicio']  . "', operario_id='" . filter_input(INPUT_POST,'operario')  . "', fecha_final='" . $_POST['final']  . "', anotacion_inicio='" . $_POST['anterior']  . "', anotacion_final='" . $_POST['posterior'] . "'";
             
             tareas_model::update_tarea($data,$id);
             $tareas = tareas_model::get_tarea();
@@ -178,6 +218,11 @@ function completar()
 
 }
 
+/**
+ * delete
+ * Funcion donde tras confirmar que si quiere borrar una tarea, la eliminamos
+ * @return void
+ */
 function delete()
 {
     //Llamada al modelo
@@ -191,6 +236,9 @@ function delete()
     ]);
 }
 
+/**
+ * Filtrado base donde hacemos todas las comprobaciones necesarias para las tareas con el uso de expresiones regulares y demas metodos
+ */
 function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final)
 {
     include("app/libreria/Util-ValidarCodigo.php");

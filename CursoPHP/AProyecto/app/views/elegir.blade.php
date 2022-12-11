@@ -20,7 +20,7 @@
         background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
     }
 </style>
-
+<!-- vista donde elegimos la seccion a la que queremos dirigirnos -->
 <body>
     <form action="" method="POST">
         <section class="vh-100 gradient-custom">
@@ -35,7 +35,7 @@
                                     <a href="index.php?controller=login&action=login" class="btn btn-primary btn-lg" role="button">Seccion de usuarios</a>
                                     </div>
                                     <div class="form-outline form-white mb-4">
-                                    <a href="index.php?controller=tareas&action=ver" class="btn btn-primary btn-lg" role="button">Seccion de tareas</a>
+                                    <a href="index.php?controller=tareas&action=ver" class="btn btn-primary btn-lg" role="button">Seccion de tareas</a> <!-- al pulsar aqui ira a index, poniendo el controlador base como tareas y ejecutar el metodo ver -->
                                     </div>
                                 </div>
                             </div>

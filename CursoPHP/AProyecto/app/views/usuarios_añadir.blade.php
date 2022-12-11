@@ -8,13 +8,6 @@
   <title>Document</title>
 </head>
 <body>
-<?php
-   session_start();
-
-   echo "Hola: ". $_SESSION['usuario'] . "<br>";
-    
-   
-   ?>
 @extends('base_usuarios')
 
 @section('mostrarAñadirUsuario')
@@ -36,8 +29,13 @@
       <input type="text" class="form-control" name="correo">{!!$error->ErrorFormateado("correo")!!}
     </div>
     <div class="col-md-3">
-      <label for="inputCity" class="form-label">Tipo</label>
-      <input type="text" class="form-control" name="tipo">{!!$error->ErrorFormateado("tipo")!!}
+      <label for="inputState" class="form-label">Tipo</label>
+      <select id="inputState" class="form-select" name="tipo">
+        <option disabled selected></option>
+        <option>Admin</option>
+        <option>Operario</option>
+      </select>
+      {!!$error->ErrorFormateado("tipo")!!}
     </div>
       <div class="col-12">
       <input type="submit" class="btn btn-primary" value="Insert">

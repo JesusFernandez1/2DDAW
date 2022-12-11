@@ -20,7 +20,7 @@
         background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
     }
 </style>
-
+<!-- vista donde hacemos login -->
 <body>
     <form action="" method="POST">
         <section class="vh-100 gradient-custom">
@@ -44,7 +44,7 @@
                                     <input type="submit" class="btn btn-primary" value="Login">
                                 </div>
                                 <div>
-                                    <p>{!!$error->ErrorFormateado("usuario")!!}</p>
+                                    <p>{!!$error->ErrorFormateado("usuario")!!}</p> <!-- si el usuario o contraseña son incorrectos, sale un mensaje de error -->
                                 </div>
 
                             </div>

@@ -29,9 +29,14 @@
       <label for="inputCity" class="form-label">Correo</label>
       <input type="text" class="form-control" name="correo" value="{{$usuario['correo']}}">{!!$error->ErrorFormateado("correo")!!}
     </div>
-    <div class="col-3">
-      <label for="inputAddress2" class="form-label">Tipo</label>
-      <input type="text" class="form-control" placeholder="Apartment, studio, or floor" name="tipo" value="{{$usuario['tipo']}}">{!!$error->ErrorFormateado("tipo")!!}
+    <div class="col-md-3">
+      <label for="inputState" class="form-label">Tipo</label>
+      <select id="inputState" class="form-select" name="tipo">
+        <option selected>{{$usuario['tipo']}}</option>
+        <option>Admin</option>
+        <option>Operario</option>
+      </select>
+      {!!$error->ErrorFormateado("tipo")!!}
     </div>
     <div class="col-12">
       <input type="submit" class="btn btn-primary" value="Insert">

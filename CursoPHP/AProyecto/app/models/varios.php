@@ -1,4 +1,7 @@
 <?php
+/**
+ * Archivo donde asignamos las rutas correspondientes y nos permite hacer uso de blade en nuestro programa
+ */
 
 use Jenssegers\Blade\Blade;
 

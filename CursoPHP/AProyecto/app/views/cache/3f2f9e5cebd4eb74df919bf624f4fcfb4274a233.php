@@ -8,13 +8,6 @@
   <title>Document</title>
 </head>
 <body>
-<?php
-   session_start();
-
-   echo "Hola: ". $_SESSION['usuario'] . "<br>";
-    
-   
-   ?>
 
 
 <?php $__env->startSection('mostrarAñadirUsuario'); ?>
@@ -40,8 +33,13 @@
 
     </div>
     <div class="col-md-3">
-      <label for="inputCity" class="form-label">Tipo</label>
-      <input type="text" class="form-control" name="tipo"><?php echo $error->ErrorFormateado("tipo"); ?>
+      <label for="inputState" class="form-label">Tipo</label>
+      <select id="inputState" class="form-select" name="tipo">
+        <option disabled selected></option>
+        <option>Admin</option>
+        <option>Operario</option>
+      </select>
+      <?php echo $error->ErrorFormateado("tipo"); ?>
 
     </div>
       <div class="col-12">
