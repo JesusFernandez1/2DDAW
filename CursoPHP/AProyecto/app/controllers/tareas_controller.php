@@ -6,8 +6,7 @@
  * Funcion para mostrar la vista donde se cargan todas las tareas
  * @return void
  */
-function ver()
-{
+function ver() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -22,8 +21,7 @@ function ver()
  * Apartado donde comprobamos
  * @return void
  */
-function filtrado()
-{
+function filtrado() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -58,8 +56,7 @@ function filtrado()
  * Funcion para ver todas las tareas pendientes
  * @return void
  */
-function verPendiente()
-{
+function verPendiente() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -75,8 +72,7 @@ function verPendiente()
  * Funcion para ver todos los detalles de todas las tareas
  * @return void
  */
-function verCompleta()
-{
+function verCompleta() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -91,8 +87,7 @@ function verCompleta()
  * Funcion que nos muestra una vista donde esta la tarea seleccionada a eliminar para confirmar si quiere borrarla o no
  * @return void
  */
-function verEliminar()
-{
+function verEliminar() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -108,8 +103,7 @@ function verEliminar()
  * Funcion para crear una nueva tarea pasando esta por un filtrado previo que debera pasar para poder añadirla
  * @return void
  */
-function crear()
-{
+function crear() {
 
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -149,8 +143,7 @@ function crear()
  * Funcion para poder modificar cualquier dato de la tarea seleccionada obteneida a traves de una id y pasando por un filtro
  * @return void
  */
-function ModificarUnaTarea()
-{
+function ModificarUnaTarea() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -192,8 +185,7 @@ function ModificarUnaTarea()
  * Funcion para que los operarios puedan modificar la tarea de forma que este completada
  * @return void
  */
-function completar()
-{
+function completar() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/tareas_model.php");
@@ -223,8 +215,7 @@ function completar()
  * Funcion donde tras confirmar que si quiere borrar una tarea, la eliminamos
  * @return void
  */
-function delete()
-{
+function delete() {
     //Llamada al modelo
     $id = $_GET['id'];
     include('app/models/varios.php');
@@ -239,8 +230,7 @@ function delete()
 /**
  * Filtrado base donde hacemos todas las comprobaciones necesarias para las tareas con el uso de expresiones regulares y demas metodos
  */
-function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final)
-{
+function filtradoCadena($error, $identificacion, $nombre, $apellido, $telefono, $descripcion, $correo, $direccion, $poblacion, $codigo, $provincia, $estado, $inicio, $operario, $final) {
     include("app/libreria/Util-ValidarCodigo.php");
     include("app/libreria/Util-ValidarNombre.php");
     include("app/libreria/Util-FechaValida.php");

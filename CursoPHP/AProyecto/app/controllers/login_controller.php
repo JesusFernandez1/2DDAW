@@ -5,8 +5,7 @@
  * Funcion que hace el login y comprueba que las credenciales sean correctas
  * @return void
  */
-function inicio()
-{
+function inicio() {
     include('app/models/varios.php');
     require("app/models/usuarios_model.php");
     require("app/models/GestorErrores.php");
@@ -18,6 +17,7 @@ function inicio()
         if (usuarios_model::getOneUsuario($_POST['nombre'], $_POST['contraseña'])) {
             session_start();
             $_SESSION["usuario"] = $_POST['nombre'];
+            setcookie("nombre",$_POST['nombre']);
             echo $blade->render('elegir');
         } else {
             $error->AnotaError('usuario', 'Nombre y/o contraseña incorrectos');
@@ -37,8 +37,7 @@ function inicio()
  * Funcion para que al seleccionar la seccion de usuarios tras pasar el login, se muestre la pagina inicial
  * @return void
  */
-function login()
-{
+function login() {
     include('app/models/varios.php');
     require("app/models/usuarios_model.php");
     require("app/models/GestorErrores.php");
@@ -49,13 +48,26 @@ function login()
     ]);
 }
 
+function logout() {
+    include('app/models/varios.php');
+    require("app/models/GestorErrores.php");
+
+    $error = new GestorErrores('<span style="color: red;">', '</span>');
+
+    session_start();
+    session_destroy();
+    
+    echo $blade->render('login', [
+        'error' => $error
+    ]);
+}
+
 /**
  * verUsuarios
  * Funcion que muestra una vista con todos los usuarios y sus datos
  * @return void
  */
-function verUsuarios()
-{
+function verUsuarios() {
     include('app/models/varios.php');
     require("app/models/usuarios_model.php");
 
@@ -70,8 +82,7 @@ function verUsuarios()
  * Funcion para crear a un usuario pasando antes por un filtro
  * @return void
  */
-function crear()
-{
+function crear() {
 
     include('app/models/varios.php');
     require("app/models/usuarios_model.php");
@@ -108,8 +119,7 @@ function crear()
  * Funcion para obtener un usuario concreto al hacer click en modificar y mostrar la vista donde sale dicho usuario
  * @return void
  */
-function verOneUsuario()
-{
+function verOneUsuario() {
     //Llamada al modelo
     include('app/models/varios.php');
     require("app/models/usuarios_model.php");
@@ -147,8 +157,7 @@ function verOneUsuario()
  * Funcion que te muestra una vista donde sale la tarea seleccionada para confirmar si quiere borrar o no
  * @return void
  */
-function verBorrarUsuario()
-{
+function verBorrarUsuario() {
     //Llamada al modelo
     $id = $_GET['id'];
     include('app/models/varios.php');
@@ -164,8 +173,7 @@ function verBorrarUsuario()
  * Si se cofirma la accion de borrar, esta se borra teniendo como referencia su id
  * @return void
  */
-function borrarUsuario()
-{
+function borrarUsuario() {
     //Llamada al modelo
     $id = $_GET['id'];
     include('app/models/varios.php');
@@ -181,8 +189,7 @@ function borrarUsuario()
  * Filtrado base donde hacemos todas las comprobaciones necesarias para los usuarios con el uso de expresiones regulares y demas
  */
 
-function filtradoUsuario($error, $nombre, $apellido, $contraseña, $correo, $tipo)
-{
+function filtradoUsuario($error, $nombre, $apellido, $contraseña, $correo, $tipo) {
     include("app/libreria/Util-ValidarNombre.php");
     include("app/libreria/Util-ValidarCorreo.php");
 
