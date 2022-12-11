@@ -53,8 +53,8 @@
             <td><?php echo e($tarea['anotacion_inicio']); ?></td>
             <td><?php echo e($tarea['anotacion_final']); ?></td>
             
-            <td><a href="index.php?controller=tareas&action=ModificarUnaTarea&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-primary btn-sm" role="button">Modificar</a> <a href="index.php?controller=tareas&action=delete&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-primary btn-sm" role="button">Eliminar</a>
-            <a href="index.php?controller=tareas&action=completar&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-primary btn-sm" role="button">Completar</a></td>
+            <td><a href="index.php?controller=tareas&action=ModificarUnaTarea&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-outline-primary" role="button">Modificar</a> <a href="index.php?controller=tareas&action=delete&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-outline-danger" role="button">Eliminar</a>
+            <a href="index.php?controller=tareas&action=completar&id=<?php echo e($tarea['tarea_id']); ?>" class="btn btn-outline-success" role="button">Completar</a></td>
          </tr>
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </tbody>

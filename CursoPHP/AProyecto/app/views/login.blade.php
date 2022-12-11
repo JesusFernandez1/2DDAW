@@ -22,7 +22,7 @@
 </style>
 <!-- vista donde hacemos login -->
 <body>
-    <form action="" method="POST">
+    <form action="index.php?controller=login&action=inicio" method="POST">
         <section class="vh-100 gradient-custom">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
@@ -46,7 +46,6 @@
                                 <div>
                                     <p>{!!$error->ErrorFormateado("usuario")!!}</p> <!-- si el usuario o contraseña son incorrectos, sale un mensaje de error -->
                                 </div>
-
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@
 <body>
 @extends('base_usuarios')
 
-@section('mostrarAñadirUsuario')
+@section('mostrarUsuarios')
   <form action="" class="row g-3" method="POST">
     <div class="col-md-3">
       <label for="inputPassword4" class="form-label">Nombre</label>

@@ -8,7 +8,7 @@
 <body>
    @extends('base_usuarios')
 
-   @section('eliminarUsuario')
+   @section('mostrarUsuarios')
 
    <h1>¿Estas seguro de eliminar el usuario?</h1>
 
@@ -28,7 +28,7 @@
             <td>{{$usuario['apellido']}}</td>
             <td>{{$usuario['correo']}}</td>
             <td>{{$usuario['tipo']}}</td>
-            <td><a href="index.php?controller=login&action=borrarUsuario&id={{$usuario['usuario_id']}}" class="btn btn-primary btn-sm" role="button">Si</a> <a href="index.php?controller=login&action=login" class="btn btn-primary btn-sm" role="button">No</a>
+            <td><a href="index.php?controller=login&action=borrarUsuario&id={{$usuario['usuario_id']}}" class="btn btn-outline-success" role="button">Si</a> <a href="index.php?controller=login&action=login" class="btn btn-outline-danger" role="button">No</a>
          </tr>
          @endforeach
       </tbody>

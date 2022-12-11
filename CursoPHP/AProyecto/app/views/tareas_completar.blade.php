@@ -10,7 +10,7 @@
 <body>
 @extends('base')
 
-@section('completarTarea')
+@section('mostrarExtension')
   <form action="" class="row g-3" method="POST">
   @foreach ($tareas as $tarea)
     <div class="col-md-3">

@@ -11,7 +11,7 @@
 <!-- vista donde ponemos los buscadores para encontrar una tarea con una serie de filtros -->
 <body>
     @extends('base')
-    @section('busqueda')
+    @section('mostrarExtension')
     <form action="" method="POST">
         <input type="text" class="form-control form-control-dark" placeholder="Search..." name="nombre">
         <input type="text" class="form-control form-control-dark" placeholder="Search..." name="estado">

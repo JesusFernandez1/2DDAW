@@ -10,7 +10,7 @@
 <body>
 @extends('base')
 
-@section('mostrarAñadir')
+@section('mostrarExtension')
   <form action="" class="row g-3" method="POST">
     <div class="col-md-3">
       <label for="inputEmail4" class="form-label">NIF/CIF</label>

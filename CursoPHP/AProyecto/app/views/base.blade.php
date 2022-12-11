@@ -28,7 +28,11 @@
         </ul>
 
         <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-         <a href="index.php?controller=tareas&action=filtrado" class="btn btn-primary" role="button">Filtrar</a>
+         <a href="index.php?controller=tareas&action=filtrado" class="btn btn-primary" role="button">Filtrar</a> 
+        </form>
+
+        <form class="col-3 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+        <a href="index.php?controller=login&action=logout" class="btn btn-primary" role="button">Logout</a>
         </form>
       </div>
     </div>
@@ -37,18 +41,16 @@
   <!-- base que esta prensente en casi todo nuestro proyecto y muestra las extensiones que hemos creado en otras vistas -->
 
   @yield('mostrarExtension')
-
-  @yield('mostrarAñadir')
-
-  @yield('busqueda')
-
-  @yield('completarTarea')
-
-  @yield('mostrarUpdate')
-
-  @yield('eliminar')
  
-
+  <style>
+  footer {
+        position: fixed;
+        top: 72%;
+        width: 100%;
+        height: 50px;
+    }
+</style>
+<footer>
   <section style="background-color: #ada4a4">
     <!-- Grid column -->
     <div class="col-md-6 col-lg-7 text-center text-md-right">

@@ -8,7 +8,7 @@
 <body>
    @extends('base')
 
-   @section('eliminar')
+   @section('mostrarExtension')
 
    <h1>¿Estas seguro de eliminar la tarea?</h1>
 
@@ -38,7 +38,7 @@
             <td>{{$tarea['fecha_creacion']}}</td>
             <td>{{$tarea['telefono']}}</td>
             <td>{{$tarea['estado_tarea']}}</td>
-            <td><a href="index.php?controller=tareas&action=delete&id={{$tarea['tarea_id']}}" class="btn btn-primary btn-sm" role="button">Si</a> <a href="index.php?controller=tareas&action=ver" class="btn btn-primary btn-sm" role="button">No</a>
+            <td><a href="index.php?controller=tareas&action=delete&id={{$tarea['tarea_id']}}" class="btn btn-outline-success" role="button">Si</a> <a href="index.php?controller=tareas&action=ver" class="btn btn-outline-danger" role="button">No</a>
          </tr>
          @endforeach
       </tbody>

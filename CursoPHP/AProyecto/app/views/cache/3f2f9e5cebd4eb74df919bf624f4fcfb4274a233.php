@@ -10,7 +10,7 @@
 <body>
 
 
-<?php $__env->startSection('mostrarAñadirUsuario'); ?>
+<?php $__env->startSection('mostrarUsuarios'); ?>
   <form action="" class="row g-3" method="POST">
     <div class="col-md-3">
       <label for="inputPassword4" class="form-label">Nombre</label>

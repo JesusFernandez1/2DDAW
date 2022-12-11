@@ -10,7 +10,7 @@
 <body>
 
 
-<?php $__env->startSection('completarTarea'); ?>
+<?php $__env->startSection('mostrarExtension'); ?>
   <form action="" class="row g-3" method="POST">
   <?php $__currentLoopData = $tareas; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tarea): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-md-3">

@@ -29,7 +29,7 @@
             <td><?php echo e($usuario['apellido']); ?></td>
             <td><?php echo e($usuario['correo']); ?></td>
             <td><?php echo e($usuario['tipo']); ?></td>
-            <td><a href="index.php?controller=login&action=verOneUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-primary btn-sm" role="button">Modificar</a> <a href="index.php?controller=login&action=verBorrarUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-primary btn-sm" role="button">Eliminar</a></td>
+            <td><a href="index.php?controller=login&action=verOneUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-outline-primary" role="button">Modificar</a> <a href="index.php?controller=login&action=verBorrarUsuario&id=<?php echo e($usuario['usuario_id']); ?>" class="btn btn-outline-danger" role="button">Eliminar</a></td>
          </tr>
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
       </tbody>

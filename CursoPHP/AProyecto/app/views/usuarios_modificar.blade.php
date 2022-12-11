@@ -10,7 +10,7 @@
 <body>
 @extends('base_usuarios')
 
-@section('mostrarUpdateUsuario')
+@section('mostrarUsuarios')
   <form action="" class="row g-3" method="POST">
   @foreach ($usuarios as $usuario)
     <div class="col-md-3">
